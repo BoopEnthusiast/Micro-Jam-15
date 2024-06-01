@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dasa81l216kgx"]
+
+[ext_resource type="PackedScene" uid="uid://d4ljq5d06sgm5" path="res://scenes/resource.tscn" id="1_aywdi"]
+
+[node name="Forest" instance=ExtResource("1_aywdi")]
