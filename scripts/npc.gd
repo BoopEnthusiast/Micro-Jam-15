@@ -12,10 +12,13 @@ var village_name = "John"
 
 
 func _physics_process(_delta):
-	print("Hi")
 	if navigation.is_navigation_finished():
 		navigation.find_new_path()
 	
 	velocity = global_position.direction_to(navigation.get_next_path_position()) * SPEED
 	
 	move_and_slide()
+
+
+func do_action():
+	pass

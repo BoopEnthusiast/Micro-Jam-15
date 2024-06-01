@@ -27,21 +27,21 @@ func day_pass(hunger, thirst, cold):
 	warmth -= cold
 	
 	# Check if villager is hungry, thirsty and cold
-	if food < 20 and !is_hungry:
+	if food < 20 and not is_hungry:
 		is_hungry = true
 		total_health -= 25
 	else :
 		is_hungry = false
 		total_health += 25
 	
-	if water < 20 and !is_thirsty:
+	if water < 20 and not is_thirsty:
 		is_thirsty = true
 		total_health -= 25
 	else :
 		is_thirsty = false
 		total_health += 25
 	
-	if warmth < 20  and !is_cold:
+	if warmth < 20  and not is_cold:
 		is_cold = true
 		total_health -= 25
 	else :
