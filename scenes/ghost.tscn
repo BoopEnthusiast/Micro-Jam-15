@@ -1,5 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://blsmf1r2lvqwy"]
+[gd_scene load_steps=3 format=3 uid="uid://blsmf1r2lvqwy"]
 
 [ext_resource type="PackedScene" uid="uid://ou2n5imicko4" path="res://scenes/npc.tscn" id="1_28cl2"]
+[ext_resource type="Script" path="res://scripts/ghost.gd" id="2_auyqw"]
 
 [node name="Ghost" instance=ExtResource("1_28cl2")]
+script = ExtResource("2_auyqw")

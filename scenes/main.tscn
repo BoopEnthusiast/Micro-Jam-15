@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b6mbk30x5y2go" path="res://scenes/villager.tscn" id="1_0auvh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c3t1r"]
-vertices = PackedVector2Array(1142, 635, 11, 640, 12, 12, 1143, 12)
+vertices = PackedVector2Array(1910, 1070, 10, 1070, 10, 10, 1910, 10)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 0, 1080, 1920, 1080, 1920, 0)])
 source_geometry_group_name = &"navigation_polygon_source_group"
