@@ -13,7 +13,7 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 0, 1, 1)
 gradient = SubResource("Gradient_h7h7o")
 width = 50
 
-[node name="NPC" type="CharacterBody2D"]
+[node name="NPC" type="CharacterBody2D" groups=["npc"]]
 motion_mode = 1
 script = ExtResource("1_ub8a0")
 
