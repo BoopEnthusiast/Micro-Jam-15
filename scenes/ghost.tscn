@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://bojqp7k6lxqb8"]
+[gd_scene load_steps=3 format=3 uid="uid://bojqp7k6lxqb8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewwf4"]
+size = Vector2(50, 50)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jklml"]
+size = Vector2(50, 50)
 
 [node name="Ghost" type="CharacterBody2D"]
+
+[node name="Navigation" type="NavigationAgent2D" parent="."]
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ewwf4")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_jklml")

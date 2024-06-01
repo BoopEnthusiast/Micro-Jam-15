@@ -1,4 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cji63ii4aqhq"]
+[gd_scene load_steps=4 format=3 uid="uid://cji63ii4aqhq"]
+
+[ext_resource type="PackedScene" uid="uid://dbx4sbswh72ll" path="res://scenes/villager.tscn" id="1_0auvh"]
+[ext_resource type="PackedScene" uid="uid://bojqp7k6lxqb8" path="res://scenes/ghost.tscn" id="2_yxhdq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c3t1r"]
 vertices = PackedVector2Array(1142, 635, 11, 640, 12, 12, 1143, 12)
@@ -8,5 +11,11 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Main" type="Node2D"]
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+[node name="NavMesh" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_c3t1r")
+
+[node name="Villager" parent="." instance=ExtResource("1_0auvh")]
+position = Vector2(501, 290)
+
+[node name="Ghost" parent="." instance=ExtResource("2_yxhdq")]
+position = Vector2(337, 192)

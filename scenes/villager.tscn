@@ -1,8 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbx4sbswh72ll"]
+[gd_scene load_steps=4 format=3 uid="uid://dbx4sbswh72ll"]
 
 [ext_resource type="Script" path="res://scripts/villager.gd" id="1_d2clm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dpjn"]
+size = Vector2(50, 50)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8mmh1"]
+size = Vector2(50, 50)
 
 [node name="Villager" type="CharacterBody2D"]
 script = ExtResource("1_d2clm")
 
-[node name="NavigationAgent" type="NavigationAgent2D" parent="."]
+[node name="Navigation" type="NavigationAgent2D" parent="."]
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4dpjn")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_8mmh1")
