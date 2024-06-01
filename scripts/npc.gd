@@ -7,6 +7,9 @@ const SPEED = 25.0
 # In-scene nodes
 @onready var navigation = $Navigation
 
+# Name
+var village_name = "John"
+
 
 func _physics_process(_delta):
 	print("Hi")

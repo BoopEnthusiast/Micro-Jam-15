@@ -8,4 +8,4 @@ var health = 10
 
 # functions
 func death():
-	
+	pass
