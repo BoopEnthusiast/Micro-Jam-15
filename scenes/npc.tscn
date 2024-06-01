@@ -1,18 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://ou2n5imicko4"]
+[gd_scene load_steps=7 format=3 uid="uid://ou2n5imicko4"]
 
 [ext_resource type="Script" path="res://scripts/npc.gd" id="1_ub8a0"]
 [ext_resource type="Script" path="res://scripts/npc_navigation.gd" id="2_p53yk"]
+[ext_resource type="Texture2D" uid="uid://76rlsfsrgvm2" path="res://resources/Villager-Sheet.png" id="3_k6330"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x12lm"]
-size = Vector2(24, 24)
+size = Vector2(6, 8)
 
-[sub_resource type="Gradient" id="Gradient_h7h7o"]
-offsets = PackedFloat32Array(0.385542)
-colors = PackedColorArray(0.843137, 0.290196, 0.780392, 1)
+[sub_resource type="SpriteFrames" id="SpriteFrames_xolb6"]
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ktqhm"]
-gradient = SubResource("Gradient_h7h7o")
-width = 50
+[sub_resource type="AtlasTexture" id="AtlasTexture_122bq"]
+atlas = ExtResource("3_k6330")
+region = Rect2(0, 8, 6, 8)
 
 [node name="NPC" type="CharacterBody2D" groups=["npc"]]
 motion_mode = 1
@@ -25,6 +24,8 @@ script = ExtResource("2_p53yk")
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_x12lm")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(0.48, 24)
-texture = SubResource("GradientTexture1D_ktqhm")
+[node name="Body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xolb6")
+
+[node name="Hair" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_122bq")

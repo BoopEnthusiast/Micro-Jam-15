@@ -1,7 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://blsmf1r2lvqwy"]
+[gd_scene load_steps=7 format=3 uid="uid://blsmf1r2lvqwy"]
 
 [ext_resource type="PackedScene" uid="uid://ou2n5imicko4" path="res://scenes/npc.tscn" id="1_28cl2"]
 [ext_resource type="Script" path="res://scripts/ghost.gd" id="2_auyqw"]
+[ext_resource type="Texture2D" uid="uid://dfuxql5y2p6gd" path="res://resources/Ghost-Sheet.png" id="3_thutm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avrx5"]
+atlas = ExtResource("3_thutm")
+region = Rect2(0, 0, 6, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdukd"]
+atlas = ExtResource("3_thutm")
+region = Rect2(6, 0, 6, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t42u4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avrx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdukd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Ghost" groups=["ghost"] instance=ExtResource("1_28cl2")]
 script = ExtResource("2_auyqw")
+
+[node name="Body" parent="." index="2"]
+sprite_frames = SubResource("SpriteFrames_t42u4")
