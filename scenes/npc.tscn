@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/npc_navigation.gd" id="2_p53yk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x12lm"]
-size = Vector2(50, 50)
+size = Vector2(24, 24)
 
 [sub_resource type="Gradient" id="Gradient_h7h7o"]
 offsets = PackedFloat32Array(0.385542)
@@ -26,5 +26,5 @@ script = ExtResource("2_p53yk")
 shape = SubResource("RectangleShape2D_x12lm")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(1, 50)
+scale = Vector2(0.48, 24)
 texture = SubResource("GradientTexture1D_ktqhm")
