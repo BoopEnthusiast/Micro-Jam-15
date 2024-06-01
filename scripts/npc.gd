@@ -12,7 +12,6 @@ var village_name = "John"
 
 
 func _physics_process(_delta):
-	print("Hi")
 	if navigation.is_navigation_finished():
 		navigation.find_new_path()
 	
