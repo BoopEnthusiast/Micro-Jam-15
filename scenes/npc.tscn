@@ -7,7 +7,8 @@
 size = Vector2(50, 50)
 
 [sub_resource type="Gradient" id="Gradient_h7h7o"]
-colors = PackedColorArray(0, 0, 0, 1, 1, 0, 1, 1)
+offsets = PackedFloat32Array(0.385542)
+colors = PackedColorArray(0.843137, 0.290196, 0.780392, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ktqhm"]
 gradient = SubResource("Gradient_h7h7o")
@@ -18,7 +19,6 @@ motion_mode = 1
 script = ExtResource("1_ub8a0")
 
 [node name="Navigation" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 script = ExtResource("2_p53yk")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
