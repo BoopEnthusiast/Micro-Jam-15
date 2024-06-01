@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cji63ii4aqhq"]
 
 [ext_resource type="PackedScene" uid="uid://b6mbk30x5y2go" path="res://scenes/villager.tscn" id="1_0auvh"]
-[ext_resource type="PackedScene" path="res://scenes/ui.tscn" id="2_nqree"]
+[ext_resource type="PackedScene" uid="uid://dgfjitk2aq4uc" path="res://scenes/ui.tscn" id="2_nqree"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c3t1r"]
 vertices = PackedVector2Array(1914, 1078, 1502, 1078, 1502, 618, 1914, 618)
@@ -22,9 +22,6 @@ position = Vector2(1284, 491)
 layer = 2
 
 [node name="UI" parent="UILayer" instance=ExtResource("2_nqree")]
-offset_top = -240.0
-offset_right = 294.0
-offset_bottom = 240.0
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -1
