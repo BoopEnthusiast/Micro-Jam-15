@@ -1,6 +1,5 @@
 extends RichTextLabel
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
+func add_log(text_to_add: String) -> void:
+	append_text("\n %s" % text_to_add.replace("[", "[lb]"))

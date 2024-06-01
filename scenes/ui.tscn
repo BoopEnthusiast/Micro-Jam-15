@@ -55,12 +55,6 @@ alignment = 2
 [node name="Log" type="RichTextLabel" parent="TextBackground/LogContainer"]
 layout_mode = 2
 bbcode_enabled = true
-text = "cool text here
-
-hahaha
-
-ahhauihouisdfhg
-"
 fit_content = true
 autowrap_mode = 1
 script = ExtResource("1_2ttvf")
