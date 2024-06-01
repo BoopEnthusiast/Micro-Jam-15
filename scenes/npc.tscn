@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://ou2n5imicko4"]
+
+[ext_resource type="Script" path="res://scripts/npc.gd" id="1_ub8a0"]
+[ext_resource type="Script" path="res://scripts/npc_navigation.gd" id="2_p53yk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x12lm"]
+size = Vector2(50, 50)
+
+[sub_resource type="Gradient" id="Gradient_h7h7o"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ktqhm"]
+gradient = SubResource("Gradient_h7h7o")
+width = 50
+
+[node name="NPC" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_ub8a0")
+
+[node name="Navigation" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+script = ExtResource("2_p53yk")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_x12lm")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(1, 50)
+texture = SubResource("GradientTexture1D_ktqhm")
