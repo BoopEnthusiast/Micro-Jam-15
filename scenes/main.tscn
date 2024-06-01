@@ -16,7 +16,7 @@ position = Vector2(-1204, -608)
 navigation_polygon = SubResource("NavigationPolygon_c3t1r")
 
 [node name="Villager" parent="." instance=ExtResource("1_0auvh")]
-position = Vector2(1284, 491)
+position = Vector2(539, 192)
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 layer = 2
