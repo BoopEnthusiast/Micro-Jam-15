@@ -1,18 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://cji63ii4aqhq"]
 
 [ext_resource type="PackedScene" uid="uid://b6mbk30x5y2go" path="res://scenes/villager.tscn" id="1_0auvh"]
-[ext_resource type="PackedScene" path="res://scenes/ui.tscn" id="2_nqree"]
+[ext_resource type="PackedScene" uid="uid://dgfjitk2aq4uc" path="res://scenes/ui.tscn" id="2_nqree"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c3t1r"]
-vertices = PackedVector2Array(1910, 1070, 627, 1070, 626, 10, 1910, 10)
+vertices = PackedVector2Array(1914, 1078, 1502, 1078, 1502, 618, 1914, 618)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(616, 0, 617, 1080, 1920, 1080, 1920, 0)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1492, 609, 1492, 1088, 1924, 1088, 1924, 608)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Main" type="Node2D"]
 
 [node name="NavMesh" type="NavigationRegion2D" parent="."]
-visible = false
+position = Vector2(-1204, -608)
 navigation_polygon = SubResource("NavigationPolygon_c3t1r")
 
 [node name="Villager" parent="." instance=ExtResource("1_0auvh")]
