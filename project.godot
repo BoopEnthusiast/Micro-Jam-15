@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(1, 0, 1, 1)
 config/icon="res://resources/icon.svg"
 
+[autoload]
+
+Singleton="*res://scripts/singleton.gd"
+
 [display]
 
 window/size/viewport_width=1920
