@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cji63ii4aqhq"]
 
 [ext_resource type="PackedScene" uid="uid://b6mbk30x5y2go" path="res://scenes/villager.tscn" id="1_0auvh"]
-[ext_resource type="PackedScene" uid="uid://dgfjitk2aq4uc" path="res://scenes/ui.tscn" id="2_nqree"]
+[ext_resource type="PackedScene" path="res://scenes/ui.tscn" id="2_nqree"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c3t1r"]
 vertices = PackedVector2Array(1910, 1070, 627, 1070, 626, 10, 1910, 10)
