@@ -21,11 +21,12 @@ func death():
 
 func day_pass(hunger, thirst, cold):
 
-		
+	# Update survival variables
 	food -= hunger
 	water -= thirst
 	warmth -= cold
 	
+	# Check if villager is hungry, thirsty and cold
 	if food < 20 and !is_hungry:
 		is_hungry = true
 		total_health -= 25
@@ -43,10 +44,18 @@ func day_pass(hunger, thirst, cold):
 	if warmth < 20  and !is_cold:
 		is_cold = true
 		total_health -= 25
+	else :
+		is_cold = false
+		total_health += 25
 	
+	# Update villagers health
 	if total_health > 100 :
 		total_health = 100
 	
+	if health > total_health :
+		health = total_health
+	
+	# Kill villager if any survival variable are 0
 	if food <= 0 or water <= 0 or warmth <= 0 or health <= 0:
 		death()
 	
