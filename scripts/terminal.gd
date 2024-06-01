@@ -3,8 +3,7 @@ extends TextEdit
 
 var last_caret_column: int
 
-
-@onready var log = $"../TextBackground/LogContainer/Log"
+@onready var log_node = $"../TextBackground/LogContainer/Log"
 
 
 func _on_text_changed():
@@ -24,7 +23,7 @@ func _on_text_changed():
 	# User says to input
 	if text.contains("\n"):
 		text = ""
-		log.add_log(text)
+		log_node.add_log(text)
 	
 	# Store caret position
 	last_caret_column = get_caret_column()

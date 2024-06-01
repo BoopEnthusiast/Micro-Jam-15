@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgfjitk2aq4uc"]
+[gd_scene load_steps=6 format=3 uid="uid://dgfjitk2aq4uc"]
 
 [ext_resource type="Script" path="res://scripts/terminal_log.gd" id="1_2ttvf"]
 [ext_resource type="Script" path="res://scripts/terminal.gd" id="2_t6jp4"]
+
+[sub_resource type="Theme" id="Theme_o73fr"]
+default_font_size = 39
 
 [sub_resource type="Theme" id="Theme_vbord"]
 default_font_size = 39
@@ -54,6 +57,7 @@ alignment = 2
 
 [node name="Log" type="RichTextLabel" parent="TextBackground/LogContainer"]
 layout_mode = 2
+theme = SubResource("Theme_o73fr")
 bbcode_enabled = true
 fit_content = true
 autowrap_mode = 1
