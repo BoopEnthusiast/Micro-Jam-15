@@ -19,3 +19,7 @@ func _physics_process(_delta):
 	velocity = global_position.direction_to(navigation.get_next_path_position()) * SPEED
 	
 	move_and_slide()
+
+
+func do_action():
+	pass
