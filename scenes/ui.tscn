@@ -58,7 +58,6 @@ layout_mode = 2
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
 fit_content = true
-autowrap_mode = 1
 script = ExtResource("1_2ttvf")
 
 [node name="TerminalBackground" type="ColorRect" parent="."]

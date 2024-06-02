@@ -117,8 +117,10 @@ func entered_command() -> void:
 		if len(command) == 0:
 			log_node.log_error("cat requires name of file. List directories and files with ls")
 		
-		log_node.add_log(command)
-		if command.ends_with(GHOST_FILE_EXTENSION) and current_directory == GHOST_DIRECTORY:
+		if command == GHOST_DIRECTORY or VILLAGER_DIRECTORY or RESOURCE_DIRECTORY:
+			log_node.log_error("That is a directory, not a file")
+		
+		elif command.ends_with(GHOST_FILE_EXTENSION) and current_directory == GHOST_DIRECTORY:
 			var found_ghost := false
 			for ghost in Singleton.ghosts:
 				if command == ghost.npc_name.to_lower() + GHOST_FILE_EXTENSION:
@@ -201,11 +203,15 @@ func entered_command() -> void:
 	
 	elif command == "next":
 		increase_ghost()
+#endregion
 	
+#region End command
 	elif command == "end":
 		Singleton.end_day()
-	
+		current_ghost_index = 0
 #endregion
+	
+
 #region Parse error
 	else:
 		log_node.log_error("Could not parse command")
