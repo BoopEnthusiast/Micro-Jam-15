@@ -11,42 +11,27 @@ func do_action():
 		busy_days_left -= 1
 	if busy_days_left == 0:
 		if action == actions.CHOP_TREE:
-			for resource : Resources in get_tree().get_nodes_in_group("resources"):
-				if resource is Forest:
-					resource.chop_tree()
-					break
+			Singleton.forest.chop_tree()
 			action = actions.IDLE
 			action_string = "idle"
 		
 		if action == actions.GROW_TREE:
-			for resource : Resources in get_tree().get_nodes_in_group("resources"):
-				if resource is Forest:
-					resource.trees += 1
-					break
+			Singleton.forest.trees += 1
 			action = actions.IDLE
 			action_string = "idle"
 		
 		if action == actions.GROW_CROPS:
-			for resource : Resources in get_tree().get_nodes_in_group("resources"):
-				if resource is Crops:
-					resource.crops += 1;
-					break
+			Singleton.crops.crops += 1
 			action = actions.IDLE
 			action_string = "idle"
 		
 		if action == actions.HARVEST_CROPS:
-			for resource : Resources in get_tree().get_nodes_in_group("resources"):
-				if resource is Crops:
-					resource.harvest_crops()
-					break
+			Singleton.crops.harvest_crops()
 			action = actions.IDLE
 			action_string = "idle"
 		
 		if action == actions.COLLECT_WATER:
-			for resource : Resources in get_tree().get_nodes_in_group("resources"):
-				if resource is Stream:
-					resource.resource_storage += 1
-					break
+			Singleton.stream.resource_storage += 1
 			action = actions.IDLE
 			action_string = "idle"
 		
