@@ -132,7 +132,7 @@ func entered_command() -> void:
 #endregion
 	
 	if command == "selected":
-		log_node.add_log(str(Singleton.ghosts[current_ghost_index]))
+		log_node.add_log(str(Singleton.ghosts[current_ghost_index].npc_name))
 	
 	else:
 		log_node.log_error("Could not parse command")
