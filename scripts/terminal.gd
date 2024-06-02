@@ -6,7 +6,7 @@ var last_caret_column: int
 @onready var log_node = $"../TextBackground/LogContainer/Log"
 
 
-var command_list = ["help - print this", "ls - list files", "cat <name> - ", ]
+var command_list = ["help - print this", "ls - list files", "cat <name> - print file contents"]
 
 
 func _on_text_changed():
@@ -62,6 +62,6 @@ func entered_command() -> void:
 
 
 func print_help() -> void:
-	log_node.add_log("Available commands:")
+	log_node.add_bb_log("[color=#ff82bd]Available commands:")
 	for command in command_list:
 		log_node.add_log(command)
