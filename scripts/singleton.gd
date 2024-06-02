@@ -104,18 +104,6 @@ func end_day():
 	
 	for ghost: Ghost in ghosts:
 		ghost.do_action()
-	
-	wood += forest.claimed_resources
-	food += crops.claimed_resources
-	water += stream.claimed_resources
-	
-	forest.resource_storage -= forest.claimed_resources
-	crops.resource_storage -= crops.claimed_resources
-	stream.resource_storage -= stream.claimed_resources
-	
-	forest.claimed_resources = 0
-	crops.claimed_resources = 0
-	stream.claimed_resources = 0
 
 
 func random_calamity():
@@ -134,10 +122,9 @@ func play_calamity():
 	if next_calamity == "Blizzard":
 		crops.crops = 0
 		for villager: Villager in villagers:
-			if villager.haul_resource == stream:
+			if villager.goal_resource == stream:
 				villager.cancel_task()
 				villager.warmth -= 20
-		stream.resources_in_stasis = 0
 		blizzard_days = 5
 		temp_water = stream.resource_storage
 		stream.resource_storage = 0
@@ -151,10 +138,9 @@ func play_calamity():
 	if next_calamity == "Drought":
 		crops.crops = 0
 		for villager: Villager in villagers:
-			if villager.haul_resource == stream:
+			if villager.goal_resource == stream:
 				villager.cancel_task()
 		stream.resource_storage = 0
-		stream.resources_in_stasis = 0
 		terminal_log.add_log("We've been hit by a drought! Our crops and water have dried up")
 		drought_node.activate_drought()
 	if next_calamity == "Thunderstorm":
