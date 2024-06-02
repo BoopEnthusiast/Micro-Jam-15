@@ -77,7 +77,8 @@ script/source = "extends Marker2D
 
 
 func _enter_tree():
-	pass"
+	pass
+"
 
 [sub_resource type="Curve" id="Curve_c55bt"]
 _data = [Vector2(0, 1), 0.0, -0.229918, 0, 0, Vector2(0.992509, 0), -2.52763, 0.0, 0, 0]
