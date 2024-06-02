@@ -1,6 +1,7 @@
 extends GPUParticles2D
 @onready var timer = $Timer
 
+
 func _enter_tree():
 	Singleton.blizzard_node = self
 

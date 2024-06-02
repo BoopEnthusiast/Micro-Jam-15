@@ -138,10 +138,12 @@ func play_calamity():
 		temp_water = stream.resource_storage
 		stream.resource_storage = 0
 		terminal_log.add_log("A Blizzard has struck! Our water has frozen, our crops died in the snow and we're cold!")
+		blizzard_node.activate_blizzard()
 	if next_calamity == "Plague":
 		for villager: Villager in villagers:
 			villager.get_sick(randi_range(3,7))
 		terminal_log.add_log("A plague has fallen upon us! All our villagers are sick!")
+		plague_node.activate_plague()
 	if next_calamity == "Drought":
 		crops.crops = 0
 		for villager: Villager in villagers:
@@ -150,6 +152,8 @@ func play_calamity():
 		stream.resource_storage = 0
 		stream.resources_in_stasis = 0
 		terminal_log.add_log("We've been hit by a drought! Our crops and water have dried up")
+		drought_node.activate_drought()
 	if next_calamity == "Thunderstorm":
 		forest.trees = 0
 		terminal_log.add_log("A thunderstorm! The forest has been destroyed!")
+		thunderstorm_node.activate_thunderstorm()

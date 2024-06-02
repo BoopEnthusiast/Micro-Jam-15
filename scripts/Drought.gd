@@ -9,5 +9,5 @@ func activate_drought():
 	play("drought")
 	color_rect.visible = true
 
-func _on_animation_finished(anim_name):
+func _on_animation_finished(_anim_name):
 	color_rect.visible = false
