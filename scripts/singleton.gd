@@ -9,9 +9,9 @@ var temp_water = 0
 
 
 # village storage
-var wood = 0
-var food = 0
-var water = 0
+var wood = 10
+var food = 10
+var water = 10
 
 var villagers: Array
 var ghosts: Array
