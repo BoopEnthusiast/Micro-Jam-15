@@ -34,13 +34,17 @@ func death():
 
 func get_sick(days) :
 	var sick_chance = 400 - hunger - thirst - warmth - health
-	if randi_range(0, 300) < sick_chance :
+	if randi_range(200, 400) < sick_chance :
 		sickness += 2
 	
 	sickness += days
 
 func do_action() :
 	pass
+
+func cancel_task():
+	is_busy = false
+	haul_resource = null
 
 func day_pass(remove_hunger, remove_thirst, remove_warmth):
 
