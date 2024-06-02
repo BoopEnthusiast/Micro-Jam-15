@@ -1,8 +1,8 @@
 class_name Villager extends NPC
 
 # Survival variables
-var food = 100
-var water = 100
+var hunger = 100
+var thirst = 100
 var warmth = 100
 
 var total_health = 100
@@ -20,7 +20,7 @@ func death():
 	pass
 
 func get_sick(days) :
-	var sick_chance = 400 - food - water - warmth - health
+	var sick_chance = 400 - hunger - thirst - warmth - health
 	if randi_range(0, 300) < sick_chance :
 		sickness += 2
 	
@@ -29,22 +29,22 @@ func get_sick(days) :
 func do_action(action) :
 	pass
 
-func day_pass(hunger, thirst, cold):
+func day_pass(remove_hunger, remove_thirst, remove_warmth):
 
 	# Update survival variables
-	food -= hunger
-	water -= thirst
-	warmth -= cold
+	hunger -= remove_hunger
+	thirst -= remove_thirst
+	warmth -= remove_warmth
 	
 	# Check if villager is hungry, thirsty and cold
-	if food < 20 and not is_hungry:
+	if hunger < 20 and not is_hungry:
 		is_hungry = true
 		total_health -= 25
 	else :
 		is_hungry = false
 		total_health += 25
 	
-	if water < 20 and not is_thirsty:
+	if thirst < 20 and not is_thirsty:
 		is_thirsty = true
 		total_health -= 25
 	else :
@@ -75,6 +75,6 @@ func day_pass(hunger, thirst, cold):
 	
 	
 	# Kill villager if any survival variable are 0
-	if food <= 0 or water <= 0 or warmth <= 0 or health <= 0:
+	if hunger <= 0 or thirst <= 0 or warmth <= 0 or health <= 0:
 		death()
 	
