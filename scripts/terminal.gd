@@ -9,6 +9,15 @@ var last_caret_column: int
 var command_list = ["help - print this", "ls - list files", "cat <name> - print file contents"]
 
 
+func _ready():
+	grab_focus()
+
+
+func _unhandled_input(event):
+	if has_selection():
+		select(0, clamp(get_selection_from_column(), 1, 17,), 0, get_selection_to_column())
+
+
 func _on_text_changed():
 	# Add spacing
 	if not text.begins_with(" "):
@@ -16,7 +25,7 @@ func _on_text_changed():
 	
 	# Remove spacing if there's no other text
 	if len(text) <= 1:
-		text = ""
+		text = " "
 		return
 	
 	# Move caret when they add text from empty
@@ -32,7 +41,7 @@ func _on_text_changed():
 		text = ""
 	
 	# Limit text length
-	if len(text) > 16:
+	while len(text) > 16:
 		text = text.erase(get_caret_column() - 1)
 		set_caret_column(last_caret_column)
 	
@@ -44,6 +53,9 @@ func _on_caret_changed():
 	# Don't let user move caret behind spacing
 	if get_caret_column() < 1:
 		set_caret_column(1)
+	
+	if has_selection():
+		select(0, clamp(get_selection_from_column(), 1, 17,), 0, get_selection_to_column())
 	
 	# Store caret position
 	last_caret_column = get_caret_column()
