@@ -6,12 +6,12 @@ func do_action() :
 	if busy_days_left > 0:
 		busy_days_left -= 1
 
-func forest_chop() :
+func action_forest_chop() :
 	var busy_days_left = 1
 
-func forest_grow():
+func action_forest_grow():
 	var busy_days_left = 1
 
-func food_grow() :
+func action_food_grow() :
 	var busy_days_left = 1
 
