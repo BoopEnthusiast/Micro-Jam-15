@@ -1,5 +1,6 @@
 extends GPUParticles2D
 @onready var timer = $Timer
+@onready var blizzard_sound = $BlizzardSound
 
 
 func _enter_tree():
