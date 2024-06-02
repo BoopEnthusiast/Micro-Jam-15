@@ -84,17 +84,23 @@ func entered_command() -> void:
 		if len(command) == 0:
 			log_node.log_error("cat requires name of file. List directories and files with ls")
 		
-		if command.ends_with(GHOST_FILE_EXTENSION):
+		log_node.add_log(command)
+		if command.ends_with(GHOST_FILE_EXTENSION) and current_directory == GHOST_DIRECTORY:
+			var found_ghost := false
 			for ghost in Singleton.ghosts:
-				if command == ghost.npc_name + GHOST_FILE_EXTENSION:
+				if command == ghost.npc_name.to_lower() + GHOST_FILE_EXTENSION:
 					log_node.add_log("Name: " + ghost.npc_name)
 					log_node.add_log("ID: " + str(ghost.id))
 					# log_node.add_log("Currnet action: " + ghost.action) # need to implement -----------------------------------------------
 					log_node.add_log("Action days left: " + str(ghost.busy_days_left))
+					found_ghost = true
 					break
-		elif command.ends_with(VILLAGER_FILE_EXTENSION):
+				if not found_ghost:
+					log_node.log_error("Could not find file")
+		elif command.ends_with(VILLAGER_FILE_EXTENSION) and current_directory == VILLAGER_DIRECTORY:
+			var found_villager := false
 			for villager in Singleton.villagers:
-				if command == villager.npc_name + VILLAGER_FILE_EXTENSION:
+				if command == villager.npc_name.to_lower() + VILLAGER_FILE_EXTENSION:
 					log_node.add_log("Name: " + villager.npc_name)
 					log_node.add_log("ID: " + str(villager.id))
 					log_node.add_log("Health: " + str(villager.health) + " / " + str(villager.total_health))
@@ -102,7 +108,10 @@ func entered_command() -> void:
 					log_node.add_log("Thirst: " + str(villager.thirst))
 					log_node.add_log("Warmth: " + str(villager.warmth))
 					log_node.add_log("Is sick: " + str(villager.sickness > 0))
+					found_villager = true
 					break
+				if not found_villager:
+					log_node.log_error("Could not find file")
 		else:
 			log_node.log_error("Could not find file")
 	
