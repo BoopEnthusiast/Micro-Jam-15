@@ -8,8 +8,9 @@ const GHOST_FILE_EXTENSION = ".gs"
 const VILLAGER_FILE_EXTENSION = ".vl"
 
 ## Variables
-# Caret variables
+# Misc variables
 var last_caret_column: int
+var current_ghost_index: int
 
 # Command variables
 var command_list = ["help - print this", "ls - list files and directories", "pwd - print current directory", "cd <directory name> - change directory", "cat <file name> - print file contents", "selected - print selected ghost"]
@@ -130,11 +131,8 @@ func entered_command() -> void:
 		log_node.log_error("cat requires name of file. List directories and files with ls")
 #endregion
 	
-	elif command.begins_with("chop "):
-		command = command.lstrip("chop ")
-	
-	elif command.begins_with("chop"):
-		log_node.log_error("chop requires more arguments")
+	if command == "selected":
+		log_node.add_log(str(Singleton.ghosts[current_ghost_index]))
 	
 	else:
 		log_node.log_error("Could not parse command")
