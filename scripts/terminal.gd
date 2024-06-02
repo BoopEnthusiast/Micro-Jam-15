@@ -4,8 +4,11 @@ extends TextEdit
 # Constants
 const GHOST_DIRECTORY = "ghosts"
 const VILLAGER_DIRECTORY = "villagers"
+const RESOURCE_DIRECTORY = "resources"
 const GHOST_FILE_EXTENSION = ".gs"
 const VILLAGER_FILE_EXTENSION = ".vl"
+const RESOURCE_FILE_EXTENSION = ".rs"
+const RESROUCE_FILES = ["Forest", "Stream", "Crops", "Camp"]
 
 ## Variables
 # Misc variables
@@ -13,7 +16,9 @@ var last_caret_column: int
 var current_ghost_index: int
 
 # Command variables
-var command_list = ["help - print this", "ls - list files and directories", "pwd - print current directory", "cd <directory name> - change directory", "cat <file name> - print file contents", "selected - print selected ghost"]
+var help_command_list = ["help - print this", "help file - print file commands", "help ghost - print selected ghost commands"]
+var file_command_list = ["ls - list files and directories", "pwd - print current directory", "cd <directory name> - change directory", "cat <file name> - print file contents"]
+var ghost_command_list = ["selected - print selected ghost", "plant - plant a new tree", "chop - drop wood for villagers to collect", "sow - plant new crops", "harvest - drop food for villagers to collect", "bucket - drop water for villagers to collect"]
 var current_directory: String = ""
 
 @onready var log_node = $"../../TextBackground/LogContainer/Log"
@@ -27,7 +32,7 @@ func _on_text_changed():
 	# User says to input
 	if text.contains("\n"):
 		text = text.replace("\n", "")
-		log_node.add_log(text)
+		log_node.add_bb_log("[color=#a825ba]" + text + "[/color]")
 		entered_command()
 		text = ""
 	
@@ -49,7 +54,15 @@ func entered_command() -> void:
 	var command = text.to_lower().strip_edges()
 #region Help command
 	if command == "help":
-		print_help()
+		print_help(help_command_list)
+	elif command.begins_with("help "):
+		command = command.lstrip("help ")
+		if command == "file":
+			print_help(file_command_list)
+		elif command == "ghost":
+			print_help(ghost_command_list)
+		else:
+			log_node.log_error("Could not find command list")
 #endregion
 	
 #region Ls command
@@ -60,9 +73,13 @@ func entered_command() -> void:
 		elif current_directory == VILLAGER_DIRECTORY:
 			for villager in Singleton.villagers:
 				log_node.add_log(villager.npc_name + VILLAGER_FILE_EXTENSION)
+		elif current_directory == RESOURCE_DIRECTORY:
+			for resource in RESROUCE_FILES:
+				log_node.add_log(resource + RESOURCE_FILE_EXTENSION)
 		else:
 			log_node.add_log(GHOST_DIRECTORY)
 			log_node.add_log(VILLAGER_DIRECTORY)
+			log_node.add_log(RESOURCE_DIRECTORY)
 #endregion
 	
 #region Pwd command
@@ -82,6 +99,8 @@ func entered_command() -> void:
 				current_directory = VILLAGER_DIRECTORY
 			elif command == ".." or command == "/":
 				current_directory = ""
+			elif command == RESOURCE_DIRECTORY or command == "/" + RESOURCE_DIRECTORY:
+				current_directory = RESOURCE_DIRECTORY
 			else:
 				log_node.log_error("did not recognize directory. List directories and files with ls, use .. to go down a directory")
 
@@ -131,14 +150,20 @@ func entered_command() -> void:
 		log_node.log_error("cat requires name of file. List directories and files with ls")
 #endregion
 	
-	if command == "selected":
+#region Selected command
+	elif command == "selected":
 		log_node.add_log(str(Singleton.ghosts[current_ghost_index].npc_name))
+#endregion
 	
+	
+	
+#region Parse error
 	else:
 		log_node.log_error("Could not parse command")
+#endregion
 
 
-func print_help() -> void:
+func print_help(which_help: Array) -> void:
 	log_node.add_bb_log("[color=#ff82bd]Available commands:")
-	for command in command_list:
+	for command in which_help:
 		log_node.add_log(command)
