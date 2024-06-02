@@ -1,15 +1,17 @@
 class_name Ghost extends NPC
 
-func do_action(action) :
-	action.to_lower()
-	if action == "forest chop" :
-		pass
-	
-	if action == "forest grow" :
-		pass
-	
-	if action == "food grow" :
-		pass
-	
-	if action == "" :
-		pass
+var busy_days_left = 0
+
+func do_action() :
+	if busy_days_left > 0:
+		busy_days_left -= 1
+
+func forest_chop() :
+	var busy_days_left = 1
+
+func forest_grow():
+	var busy_days_left = 1
+
+func food_grow() :
+	var busy_days_left = 1
+

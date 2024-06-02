@@ -26,7 +26,7 @@ func get_sick(days) :
 	
 	sickness += days
 
-func do_action(action) :
+func do_action() :
 	pass
 
 func day_pass(remove_hunger, remove_thirst, remove_warmth):
@@ -66,7 +66,16 @@ func day_pass(remove_hunger, remove_thirst, remove_warmth):
 		get_sick(0)
 	
 	
-	# Update villagers health
+	# Update villager survival variables
+	if hunger > 100 :
+		hunger = 100
+	
+	if thirst > 100 :
+		thirst = 100
+	
+	if warmth > 100 :
+		warmth = 100
+	
 	if total_health > 100 :
 		total_health = 100
 	
