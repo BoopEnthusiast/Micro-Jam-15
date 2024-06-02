@@ -2,8 +2,8 @@ extends TextEdit
 
 
 # Constants
-const GHOST_DIRECTORY = "ghost"
-const VILLAGER_DIRECTORY = "villager"
+const GHOST_DIRECTORY = "ghosts"
+const VILLAGER_DIRECTORY = "villagers"
 const GHOST_FILE_EXTENSION = ".gs"
 const VILLAGER_FILE_EXTENSION = ".vl"
 
@@ -12,7 +12,7 @@ const VILLAGER_FILE_EXTENSION = ".vl"
 var last_caret_column: int
 
 # Command variables
-var command_list = ["help - print this", "ls - list files", "pwd - print current directory", "cd <dir name> - change directory", "cat <file name> - print file contents"]
+var command_list = ["help - print this", "ls - list files and directories", "pwd - print current directory", "cd <dir name> - change directory", "cat <file name> - print file contents"]
 var current_directory: String = ""
 
 @onready var log_node = $"../TextBackground/LogContainer/Log"
@@ -93,11 +93,11 @@ func entered_command() -> void:
 		if len(command) == 0:
 			log_node.log_error("cd requires name of directory. list directories and files with ls, use .. to go down a directory")
 		else:
-			if command == GHOST_DIRECTORY:
+			if command == GHOST_DIRECTORY or command == "/" + GHOST_DIRECTORY:
 				current_directory = GHOST_DIRECTORY
-			elif command == VILLAGER_DIRECTORY:
+			elif command == VILLAGER_DIRECTORY or command == "/" + VILLAGER_DIRECTORY:
 				current_directory = VILLAGER_DIRECTORY
-			elif command == "..":
+			elif command == ".." or command == "/":
 				current_directory = ""
 			else:
 				log_node.log_error("did not recognize directory. list directories and files with ls, use .. to go down a directory")
