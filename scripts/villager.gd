@@ -88,13 +88,41 @@ func day_pass(remove_hunger, remove_thirst, remove_warmth):
 		death()
 		
 		
+	var smallest_resource
+	var claimed_wood
+	var claimed_food
+	var claimed_water
+	
 	for resource: Resources in get_tree().get_nodes_in_group("resources"):
-		if resource.resource_storage - resource.claimed_resources > 0:
-			if resource.resource_storage - resource.claimed_resources < 5:
-				resource.claimed_resources = resource.resource_storage
-			else:
-				resource.claimed_resources += 5
-			break
+		if resource is Forest:
+			claimed_wood = resource.claimed_resources
+		if resource is Crops:
+			claimed_food = resource.claimed_resources
+		if resource is Stream:
+			claimed_water = resource.claimed_resources
 	
 	
+	if Singleton.food + claimed_food < Singleton.water + claimed_water:
+		if Singleton.food + claimed_food < Singleton.wood + claimed_wood:
+			#food is smallest
+			smallest_resource = Crops
+		else:
+			#wood is smallest
+			smallest_resource = Forest
+	elif Singleton.water + claimed_water < Singleton.wood + claimed_wood:
+		#water is smallest
+		smallest_resource = Stream
+	else:
+		#wood is smallest
+		smallest_resource = Forest
+			
+	for resource: Resources in get_tree().get_nodes_in_group("resources"):
+		if typeof(resource) == typeof(smallest_resource): 
+			if resource.resource_storage - resource.claimed_resources > 0:
+				if resource.resource_storage - resource.claimed_resources < 5:
+					resource.claimed_resources = resource.resource_storage
+				else:
+					resource.claimed_resources += 5
+		
 	
+
