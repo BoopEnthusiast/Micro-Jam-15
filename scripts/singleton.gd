@@ -51,6 +51,8 @@ func end_day():
 		stream.resource_storage += temp_water
 		temp_water = 0
 	
+	
+	
 	if villagers.size() <= 0:
 		pass # end game lose
 	
@@ -93,6 +95,14 @@ func end_day():
 	
 	for ghost: Ghost in ghosts:
 		ghost.do_action()
+	
+	wood += forest.claimed_resources
+	food += crops.claimed_resources
+	water += stream.claimed_resources
+	
+	forest.claimed_resources = 0
+	crops.claimed_resources = 0
+	stream.claimed_resources = 0
 
 
 func random_calamity():

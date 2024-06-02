@@ -108,18 +108,11 @@ func day_pass(remove_hunger, remove_thirst, remove_warmth):
 		
 		
 	var smallest_resource
-	var claimed_wood = 0
-	var claimed_food = 0
-	var claimed_water = 0
+	var claimed_wood = Singleton.forest.claimed_resources + Singleton.forest.resources_in_stasis
+	var claimed_food = Singleton.crops.claimed_resources + Singleton.crops.resources_in_stasis
+	var claimed_water = Singleton.crops.claimed_resources + Singleton.crops.resources_in_stasis
 	var resource_difference
 	
-	for resource: Resources in get_tree().get_nodes_in_group("resources"):
-		if resource is Forest:
-			claimed_wood = resource.claimed_resources + resource.resources_in_stasis
-		if resource is Crops:
-			claimed_food = resource.claimed_resources
-		if resource is Stream:
-			claimed_water = resource.claimed_resources
 	
 	
 	if Singleton.food + claimed_food < Singleton.water + claimed_water:
@@ -138,9 +131,9 @@ func day_pass(remove_hunger, remove_thirst, remove_warmth):
 		
 		
 	if not is_busy:
-		for resource: Resources in get_tree().get_nodes_in_group("resources"):
-			resource_difference = resource.resource_storage - resource.claimed_resource
-			if typeof(resource) == typeof(smallest_resource): 
+		for resource: Resources in get_tree().get_nodes_in_group("resource"):
+			resource_difference = resource.resource_storage - resource.claimed_resources
+			if resource.is_class(smallest_resource.get_class()): 
 				if resource_difference > 0:
 					if resource_difference >= 10:
 						if resource_difference >= 15:
@@ -160,7 +153,6 @@ func day_pass(remove_hunger, remove_thirst, remove_warmth):
 						resource.claimed_resources = resource.resource_storage
 					elif resource_difference < 10:
 						resource.claimed_resources += 5
-		
 	if is_busy and big_haul == 20:
 		big_haul = 0
 		haul_resource.resources_in_stasis -= 20
