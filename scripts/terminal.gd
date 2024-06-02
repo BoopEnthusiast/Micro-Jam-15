@@ -177,27 +177,27 @@ func entered_command() -> void:
 #endregion
 #region Action commands 
 	elif command == "plant":
-		if not ghost_is_doing_something() and not is_end_of_ghosts():
+		if not is_end_of_ghosts() and not ghost_is_doing_something():
 			Singleton.ghosts[current_ghost_index].action_forest_grow()
 			increase_ghost()
 	
 	elif command == "chop":
-		if not ghost_is_doing_something() and not is_end_of_ghosts():
+		if not is_end_of_ghosts() and not ghost_is_doing_something():
 			Singleton.ghosts[current_ghost_index].action_forest_chop()
 			increase_ghost()
 	
 	elif command == "sow":
-		if not ghost_is_doing_something() and not is_end_of_ghosts():
+		if not is_end_of_ghosts() and not ghost_is_doing_something():
 			Singleton.ghosts[current_ghost_index].action_crops_grow()
 			increase_ghost()
 	
 	elif command == "harvest":
-		if not ghost_is_doing_something() and not is_end_of_ghosts():
+		if not is_end_of_ghosts() and not ghost_is_doing_something():
 			Singleton.ghosts[current_ghost_index].action_harvest_crops()
 			increase_ghost()
 	
 	elif command == "bucket":
-		if not ghost_is_doing_something() and not is_end_of_ghosts():
+		if not is_end_of_ghosts() and not ghost_is_doing_something():
 			Singleton.ghosts[current_ghost_index].action_collect_water()
 			increase_ghost()
 	
@@ -238,8 +238,6 @@ func is_end_of_ghosts() -> bool:
 
 
 func ghost_is_doing_something() -> bool:
-	if not is_end_of_ghosts():
-		return false
 	if Singleton.ghosts[current_ghost_index].action == Ghost.actions.IDLE:
 		return false
 	log_node.log_error("Ghost is already perfoming task, they can only wait")
