@@ -2,23 +2,20 @@
 
 [ext_resource type="PackedScene" uid="uid://b6mbk30x5y2go" path="res://scenes/villager.tscn" id="1_0auvh"]
 [ext_resource type="PackedScene" uid="uid://dgfjitk2aq4uc" path="res://scenes/ui.tscn" id="2_nqree"]
-[ext_resource type="PackedScene" uid="uid://d4ljq5d06sgm5" path="res://scenes/resource.tscn" id="3_0xx8o"]
+[ext_resource type="PackedScene" uid="uid://blsmf1r2lvqwy" path="res://scenes/ghost.tscn" id="3_4ci76"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c3t1r"]
-vertices = PackedVector2Array(1914, 1078, 1502, 1078, 1502, 618, 1914, 618)
+vertices = PackedVector2Array(1455, 843, 1321, 843, 1321, 613, 1455, 613)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(1492, 609, 1492, 1088, 1924, 1088, 1924, 608)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1316, 608, 1316, 848, 1460, 848, 1460, 608)])
 source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 5.0
 
 [node name="Main" type="Node2D"]
 
 [node name="NavMesh" type="NavigationRegion2D" parent="."]
-visible = false
 position = Vector2(-1204, -608)
 navigation_polygon = SubResource("NavigationPolygon_c3t1r")
-
-[node name="Villager" parent="." instance=ExtResource("1_0auvh")]
-position = Vector2(539, 192)
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -36,4 +33,15 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.407843, 0.168627, 0.611765, 1)
 
-[node name="Resources" parent="." instance=ExtResource("3_0xx8o")]
+[node name="Villager" parent="." instance=ExtResource("1_0auvh")]
+position = Vector2(183, 99)
+id = 1
+npc_name = "Jim"
+
+[node name="Ghost" parent="." instance=ExtResource("3_4ci76")]
+position = Vector2(193, 158)
+id = 2
+npc_name = "John"
+
+[connection signal="mouse_entered" from="Villager" to="Villager/Name" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Villager" to="Villager/Name" method="_on_mouse_exited"]

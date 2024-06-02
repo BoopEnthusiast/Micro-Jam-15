@@ -2,7 +2,7 @@ class_name NPCNavigation extends NavigationAgent2D
 
 
 # Constants
-const PATH_RADIUS = 300.0
+const PATH_RADIUS = 50.0
 
 
 func find_new_path() -> void:

@@ -1,23 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://ou2n5imicko4"]
+[gd_scene load_steps=8 format=3 uid="uid://ou2n5imicko4"]
 
 [ext_resource type="Script" path="res://scripts/npc.gd" id="1_ub8a0"]
 [ext_resource type="Script" path="res://scripts/npc_navigation.gd" id="2_p53yk"]
-[ext_resource type="Texture2D" uid="uid://76rlsfsrgvm2" path="res://resources/Villager-Sheet.png" id="3_k6330"]
+[ext_resource type="Script" path="res://scripts/npc_hair.gd" id="3_svcm4"]
+[ext_resource type="Script" path="res://scripts/name.gd" id="3_vt8ft"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x12lm"]
 size = Vector2(6, 8)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xolb6"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_122bq"]
-atlas = ExtResource("3_k6330")
-region = Rect2(0, 8, 6, 8)
+[sub_resource type="Theme" id="Theme_ssi5f"]
+default_font_size = 16
 
 [node name="NPC" type="CharacterBody2D" groups=["npc"]]
 motion_mode = 1
 script = ExtResource("1_ub8a0")
 
 [node name="Navigation" type="NavigationAgent2D" parent="."]
+path_desired_distance = 5.0
+target_desired_distance = 2.5
 debug_enabled = true
 script = ExtResource("2_p53yk")
 
@@ -28,4 +30,27 @@ shape = SubResource("RectangleShape2D_x12lm")
 sprite_frames = SubResource("SpriteFrames_xolb6")
 
 [node name="Hair" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_122bq")
+script = ExtResource("3_svcm4")
+
+[node name="Name" type="Label" parent="."]
+visible = false
+offset_left = -53.0
+offset_top = -16.0
+offset_right = 53.0
+offset_bottom = -2.0
+theme = SubResource("Theme_ssi5f")
+horizontal_alignment = 1
+script = ExtResource("3_vt8ft")
+
+[node name="HoverArea" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_top = -5.0
+offset_right = 4.0
+offset_bottom = 5.0
+
+[connection signal="npc_ready_done" from="." to="Hair" method="_on_npc_ready_done"]
+[connection signal="npc_ready_done" from="." to="Name" method="_on_npc_ready_done"]
+[connection signal="mouse_entered" from="HoverArea" to="Name" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HoverArea" to="Name" method="_on_mouse_exited"]
