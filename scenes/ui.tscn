@@ -84,6 +84,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_dx1ii")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1lnew")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_qm2ex")
 placeholder_text = "'help' for commands"
+context_menu_enabled = false
 script = ExtResource("2_t6jp4")
 
 [connection signal="caret_changed" from="TerminalBackground/Terminal" to="TerminalBackground/Terminal" method="_on_caret_changed"]
