@@ -12,8 +12,6 @@ func do_action():
 	if busy_days_left == 0 and action != actions.IDLE:
 		global_position = Singleton.tele_home.global_position
 		navigation.find_new_path()
-		action = actions.IDLE
-		action_string = "idle"
 		match action:
 			actions.CHOP_TREE:
 				Singleton.forest.chop_tree()
@@ -27,6 +25,8 @@ func do_action():
 				Singleton.stream.resource_storage += 1
 			actions.HEAL_VILLAGER:
 				sick_villager.sickness -= 1
+		action = actions.IDLE
+		action_string = "idle"
 
 
 
