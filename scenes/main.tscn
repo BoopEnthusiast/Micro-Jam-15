@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cji63ii4aqhq"]
+[gd_scene load_steps=24 format=3 uid="uid://cji63ii4aqhq"]
 
 [ext_resource type="PackedScene" uid="uid://b6mbk30x5y2go" path="res://scenes/villager.tscn" id="1_0auvh"]
 [ext_resource type="PackedScene" uid="uid://dgfjitk2aq4uc" path="res://scenes/ui.tscn" id="2_nqree"]
@@ -26,6 +26,160 @@ agent_radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8konf"]
 radius = 20.025
+
+[sub_resource type="Curve" id="Curve_c55bt"]
+_data = [Vector2(0, 1), 0.0, -0.229918, 0, 0, Vector2(0.992509, 0), -2.52763, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_88xac"]
+curve = SubResource("Curve_c55bt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2cegi"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-50, -130, 0)
+emission_shape_scale = Vector3(1.5, 20, 0)
+emission_shape = 3
+emission_box_extents = Vector3(100, 1, 1)
+angle_min = -149.8
+angle_max = 720.0
+inherit_velocity_ratio = 10.0
+direction = Vector3(0, 1, 0)
+spread = 10.572
+flatness = 0.156
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+gravity = Vector3(60, 98, 0)
+scale_max = 5.55
+scale_curve = SubResource("CurveTexture_88xac")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_08t40"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-50, -130, 0)
+emission_shape_scale = Vector3(1.5, 20, 0)
+emission_shape = 3
+emission_box_extents = Vector3(100, 1, 1)
+angle_min = -149.8
+angle_max = 720.0
+inherit_velocity_ratio = 10.0
+direction = Vector3(0, 1, 0)
+spread = 10.572
+flatness = 0.156
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+angular_velocity_min = 720.0
+angular_velocity_max = 720.0
+gravity = Vector3(60, 98, 0)
+scale_min = 0.65
+scale_max = 1.6
+color = Color(0.360784, 0.305882, 1, 1)
+
+[sub_resource type="Animation" id="Animation_6rexx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_owbeh"]
+resource_name = "thunderstorm"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0474494, 0.182158, 0.216875, 0.429344),
+"transitions": PackedFloat32Array(0.170755, 0.392292, 1, 1, 0.138696),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.588235), Color(1, 1, 1, 0), Color(1, 1, 1, 0.588235), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n1ur8"]
+_data = {
+"RESET": SubResource("Animation_6rexx"),
+"thunderstorm": SubResource("Animation_owbeh")
+}
+
+[sub_resource type="Animation" id="Animation_jp70y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Drought/CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g2qvg"]
+resource_name = "drought"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Drought/CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.332396, 0.590301, 0.99734),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.894118, 0.678431, 0.196078, 0.607843), Color(0.894118, 0.678431, 0.196078, 0.607843), Color(1, 1, 0.196078, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ademg"]
+_data = {
+"RESET": SubResource("Animation_jp70y"),
+"drought": SubResource("Animation_g2qvg")
+}
+
+[sub_resource type="Animation" id="Animation_v6kcy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Plague/CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d8t2m"]
+resource_name = "plague"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Plague/CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.343189, 0.579963, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.505882, 0.372549, 0.615686, 0.796078), Color(0.505882, 0.372549, 0.615686, 0.796078), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vm2lm"]
+_data = {
+"RESET": SubResource("Animation_v6kcy"),
+"plague": SubResource("Animation_d8t2m")
+}
 
 [node name="Main" type="Node2D"]
 script = SubResource("GDScript_0sumy")
@@ -116,6 +270,72 @@ position = Vector2(126, 224)
 
 [node name="Crops" parent="." instance=ExtResource("7_7r6mo")]
 position = Vector2(237, 224)
+
+[node name="Blizzard" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(175, 111)
+scale = Vector2(1, 1.5)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_2cegi")
+lifetime = 1.7
+
+[node name="Timer" type="Timer" parent="Blizzard"]
+one_shot = true
+autostart = true
+
+[node name="Thundertstorm" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(183, 81)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_08t40")
+lifetime = 1.7
+
+[node name="Timer" type="Timer" parent="Thundertstorm"]
+
+[node name="Thunder" type="AnimationPlayer" parent="Thundertstorm"]
+libraries = {
+"": SubResource("AnimationLibrary_n1ur8")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Thundertstorm"]
+
+[node name="ColorRect" type="ColorRect" parent="Thundertstorm/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Drought" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ademg")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Drought"]
+
+[node name="ColorRect" type="ColorRect" parent="Drought/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Plague" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vm2lm")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Plague"]
+
+[node name="ColorRect" type="ColorRect" parent="Plague/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
 
 [connection signal="mouse_entered" from="Villager2" to="Villager2/Name" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Villager2" to="Villager2/Name" method="_on_mouse_exited"]
