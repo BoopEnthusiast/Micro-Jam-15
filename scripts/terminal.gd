@@ -238,6 +238,8 @@ func is_end_of_ghosts() -> bool:
 
 
 func ghost_is_doing_something() -> bool:
+	if not is_end_of_ghosts():
+		return false
 	if Singleton.ghosts[current_ghost_index].action == Ghost.actions.IDLE:
 		return false
 	log_node.log_error("Ghost is already perfoming task, they can only wait")
