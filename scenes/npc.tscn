@@ -25,7 +25,6 @@ target_desired_distance = 2.5
 avoidance_enabled = true
 radius = 5.0
 neighbor_distance = 100.0
-debug_enabled = true
 script = ExtResource("2_p53yk")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
