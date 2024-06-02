@@ -10,16 +10,14 @@ var water = 0
 
 
 func end_day():
-	
-	var villagers:Array[Node] = get_tree().get_nodes_in_group("villager")
-	villagers.shuffle()
-	
-	var need_resource = len(villagers)
+	var villagers: Array[Villager] = get_tree().get_nodes_in_group("villager") as Array[Villager]
+	var need_resource: int
 	
 	# evenly distribute resources amonst villagers
 	while food > 0 and need_resource > 0:
 		need_resource = len(villagers)
 		villagers.shuffle()
+		
 		for villager: Villager in villagers:
 			if food > 0 and villager.hunger < 100:
 				food -= 1
@@ -30,8 +28,9 @@ func end_day():
 	while water > 0 :
 		need_resource = len(villagers)
 		villagers.shuffle()
+		
 		for villager: Villager in villagers:
-			if water > 0 and villager.thirst < 100 :
+			if water > 0 and villager.thirst < 100:
 				water -= 1
 				villager.thirst += 5
 			if villager.thirst >= 100:
@@ -41,7 +40,7 @@ func end_day():
 		need_resource = len(villagers)
 		villagers.shuffle()
 		for villager: Villager in villagers:
-			if wood > 0 and villager.warmth < 100 :
+			if wood > 0 and villager.warmth < 100:
 				wood -= 1
 				villager.warmth += 5
 			if villager.warmth >= 100:
