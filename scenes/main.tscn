@@ -300,6 +300,7 @@ libraries = {
 [node name="CanvasLayer" type="CanvasLayer" parent="Thundertstorm"]
 
 [node name="ColorRect" type="ColorRect" parent="Thundertstorm/CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -315,6 +316,7 @@ libraries = {
 [node name="CanvasLayer" type="CanvasLayer" parent="Drought"]
 
 [node name="ColorRect" type="ColorRect" parent="Drought/CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -330,6 +332,7 @@ libraries = {
 [node name="CanvasLayer" type="CanvasLayer" parent="Plague"]
 
 [node name="ColorRect" type="ColorRect" parent="Plague/CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
