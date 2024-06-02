@@ -17,8 +17,8 @@ const RESROUCE_FILES = ["Forest", "Stream", "Crops", "Camp"]
 
 ## Variables
 # Misc variables
-var last_caret_column: int
-var current_ghost_index: int
+var last_caret_column: int = 0
+var current_ghost_index: int = 0
 
 # Command variables
 var help_command_list = ["help - print this", "help file - print file commands", "help ghost - print selected ghost commands", "end - end current day and progress actions"]
@@ -172,37 +172,47 @@ func entered_command() -> void:
 	elif command == "selected":
 		log_node.add_log(str(Singleton.ghosts[current_ghost_index].npc_name))
 #endregion
-#region New Code Region
+#region Action commands 
 	elif command == "plant":
-		if Singleton.ghosts[current_ghost_index].action == Ghost.actions.IDLE:
+		if current_ghost_index + 1 >= Singleton.ghosts.size():
+			log_node.log_error("You have given all available ghosts tasks")
+		elif Singleton.ghosts[current_ghost_index].action == Ghost.actions.IDLE:
 			Singleton.ghosts[current_ghost_index].action_forest_grow()
 			increase_ghost()
 		else:
 			log_node.log_error("Ghost is already perfoming task, they can only wait")
 	
 	elif command == "chop":
-		if Singleton.ghosts[current_ghost_index].action == Ghost.actions.IDLE:
+		if current_ghost_index + 1 >= Singleton.ghosts.size():
+			log_node.log_error("You have given all available ghosts tasks")
+		elif Singleton.ghosts[current_ghost_index].action == Ghost.actions.IDLE:
 			Singleton.ghosts[current_ghost_index].action_forest_chop()
 			increase_ghost()
 		else:
 			log_node.log_error("Ghost is already perfoming task, they can only wait")
 	
 	elif command == "sow":
-		if Singleton.ghosts[current_ghost_index].action == Ghost.actions.IDLE:
+		if current_ghost_index + 1 >= Singleton.ghosts.size():
+			log_node.log_error("You have given all available ghosts tasks")
+		elif Singleton.ghosts[current_ghost_index].action == Ghost.actions.IDLE:
 			Singleton.ghosts[current_ghost_index].action_crops_grow()
 			increase_ghost()
 		else:
 			log_node.log_error("Ghost is already perfoming task, they can only wait")
 	
 	elif command == "harvest":
-		if Singleton.ghosts[current_ghost_index].action == Ghost.actions.IDLE:
+		if current_ghost_index + 1 >= Singleton.ghosts.size():
+			log_node.log_error("You have given all available ghosts tasks")
+		elif Singleton.ghosts[current_ghost_index].action == Ghost.actions.IDLE:
 			Singleton.ghosts[current_ghost_index].action_harvest_crops()
 			increase_ghost()
 		else:
 			log_node.log_error("Ghost is already perfoming task, they can only wait")
 	
 	elif command == "bucket":
-		if Singleton.ghosts[current_ghost_index].action == Ghost.actions.IDLE:
+		if current_ghost_index + 1 >= Singleton.ghosts.size():
+			log_node.log_error("You have given all available ghosts tasks")
+		elif Singleton.ghosts[current_ghost_index].action == Ghost.actions.IDLE:
 			Singleton.ghosts[current_ghost_index].action_collect_water()
 			increase_ghost()
 		else:
@@ -224,4 +234,10 @@ func print_help(which_help: Array) -> void:
 
 
 func increase_ghost() -> void:
-	log_node.add_log(Singleton.ghosts[current_ghost_index].npc_name + " is now doing: " + Singleton.ghosts[current_ghost_index].action_string)
+	if current_ghost_index + 1 >= Singleton.ghosts.size():
+		log_node.log_error(str(Singleton.ghosts) + "\n" + str(Singleton.ghosts[current_ghost_index]))
+		log_node.log_error("You have given all available ghosts tasks")
+	else: 
+		log_node.add_log(Singleton.ghosts[current_ghost_index].npc_name + " is now doing: " + Singleton.ghosts[current_ghost_index].action_string)
+		current_ghost_index += 1
+
