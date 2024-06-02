@@ -1,0 +1,13 @@
+extends AnimationPlayer
+@onready var color_rect = $CanvasLayer/ColorRect
+
+
+func _enter_tree():
+	Singleton.drought_node = self
+
+func activate_drought():
+	play("drought")
+	color_rect.visible = true
+
+func _on_animation_finished(anim_name):
+	color_rect.visible = false
