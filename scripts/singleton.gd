@@ -12,7 +12,7 @@ var villagers
 var ghosts
 
 func _ready():
-	var villagers_tmp = get_tree().get_nodes_in_group("villager") as Array[Villager]
+	villagers = get_tree().get_nodes_in_group("villager") as Array[Villager]
 	ghosts = get_tree().get_nodes_in_group("ghost") as Array[Ghost]
 
 
