@@ -62,7 +62,7 @@ func entered_command() -> void:
 	if command == "help":
 		print_help(help_command_list)
 	elif command.begins_with("help "):
-		command = command.lstrip("help ")
+		command = command.trim_prefix("help ")
 		if command == "file":
 			print_help(file_command_list)
 		elif command == "ghost":
@@ -92,7 +92,7 @@ func entered_command() -> void:
 #endregion
 #region Cd command
 	elif command.begins_with("cd "):
-		command = command.lstrip("cd ")
+		command = command.trim_prefix("cd ")
 		if len(command) == 0:
 			log_node.log_error("cd requires name of directory. List directories and files with ls, use .. to go down a directory")
 		else:
@@ -113,7 +113,7 @@ func entered_command() -> void:
 #endregion
 #region Cat command
 	elif command.begins_with("cat "):
-		command = command.lstrip("cat ")
+		command = command.trim_prefix("cat ")
 		if len(command) == 0:
 			log_node.log_error("cat requires name of file. List directories and files with ls")
 		
@@ -131,7 +131,7 @@ func entered_command() -> void:
 					found_ghost = true
 					break
 				if not found_ghost:
-					log_node.log_error("Could not find file")
+					log_node.log_error("Could not find ghost file, use ls to view files")
 		elif command.ends_with(VILLAGER_FILE_EXTENSION) and current_directory == VILLAGER_DIRECTORY:
 			var found_villager := false
 			for villager in Singleton.villagers:
@@ -146,7 +146,7 @@ func entered_command() -> void:
 					found_villager = true
 					break
 			if not found_villager:
-				log_node.log_error("Could not find file")
+				log_node.log_error("Could not find villager file, use ls to view files")
 		elif command.ends_with(RESOURCE_FILE_EXTENSION) and current_directory == RESOURCE_DIRECTORY:
 			if command == "forest" + RESOURCE_FILE_EXTENSION:
 				log_node.add_log("Trees: " + str(Singleton.forest.trees))
@@ -163,9 +163,9 @@ func entered_command() -> void:
 				log_node.add_log("Villagers alive: " + str(Singleton.villagers.size()))
 				log_node.add_log("Ghosts unalive: " + str(Singleton.ghosts.size()))
 			else:
-				log_node.log_error("Could not find file")
+				log_node.log_error("Could not find resource file, use ls to view files")
 		else:
-			log_node.log_error("Could not find file")
+			log_node.log_error("Could not find file, use ls to view directories and files")
 	
 	elif command.begins_with("cat"):
 		log_node.log_error("cat requires name of file. List directories and files with ls")
