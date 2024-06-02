@@ -143,6 +143,21 @@ func entered_command() -> void:
 					break
 				if not found_villager:
 					log_node.log_error("Could not find file")
+		elif command.ends_with(RESOURCE_FILE_EXTENSION) and current_directory == RESOURCE_DIRECTORY:
+			if command == "forest" + RESOURCE_FILE_EXTENSION:
+				log_node.add_log("Trees: " + str(Singleton.forest.trees))
+				log_node.add_log("Available wood: " + str(Singleton.forest.resource_storage))
+			elif command == "stream" + RESOURCE_FILE_EXTENSION:
+				log_node.add_log("Available water: " + str(Singleton.forest.resource_storage))
+			elif command == "crops" + RESOURCE_FILE_EXTENSION:
+				log_node.add_log("Crops: " + str(Singleton.crops.crops))
+				log_node.add_log("Available food: " + str(Singleton.crops.resource_storage))
+			elif command == "camp" + RESOURCE_FILE_EXTENSION:
+				log_node.add_log("Food: " + str(Singleton.food))
+				log_node.add_log("Water: " + str(Singleton.water))
+				log_node.add_log("Warmth: " + str(Singleton.wood))
+				log_node.add_log("Villagers alive: " + str(Singleton.villagers.size()))
+				log_node.add_log("Ghosts unalive: " + str(Singleton.ghosts.size()))
 		else:
 			log_node.log_error("Could not find file")
 	

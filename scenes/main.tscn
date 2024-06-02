@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cji63ii4aqhq"]
+[gd_scene load_steps=10 format=3 uid="uid://cji63ii4aqhq"]
 
 [ext_resource type="PackedScene" uid="uid://b6mbk30x5y2go" path="res://scenes/villager.tscn" id="1_0auvh"]
 [ext_resource type="PackedScene" uid="uid://dgfjitk2aq4uc" path="res://scenes/ui.tscn" id="2_nqree"]
 [ext_resource type="Texture2D" uid="uid://ce3411kdxferq" path="res://resources/Backdrop.png" id="2_q7ja4"]
 [ext_resource type="PackedScene" uid="uid://blsmf1r2lvqwy" path="res://scenes/ghost.tscn" id="3_4ci76"]
+[ext_resource type="PackedScene" uid="uid://dasa81l216kgx" path="res://scenes/forest.tscn" id="5_6dytf"]
+[ext_resource type="PackedScene" uid="uid://bcfl5n8v8kvhg" path="res://scenes/stream.tscn" id="6_6ynix"]
+[ext_resource type="PackedScene" uid="uid://c0gxw2wri6s2j" path="res://scenes/crops.tscn" id="7_7r6mo"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c3t1r"]
 vertices = PackedVector2Array(1434, 670, 1455, 669, 1455, 782, 1401, 716, 1397, 703, 1397, 729, 1449, 786, 1448, 786, 1366, 843, 1356, 831, 1350, 821, 1351, 821, 1395, 832, 1394, 843, 1426, 799, 1389, 737, 1351, 716, 1321, 765, 1321, 613, 1374, 613, 1376, 634, 1355, 703, 1421, 653, 1389, 695, 1398, 648, 1411, 641, 1376, 691, 1376, 741, 1407, 817, 1348, 801, 1335, 786, 1363, 695, 1407, 818, 1363, 737, 1355, 729)
@@ -51,15 +54,54 @@ offset_right = 256.0
 offset_bottom = 240.0
 texture = ExtResource("2_q7ja4")
 
-[node name="Villager" parent="." instance=ExtResource("1_0auvh")]
-position = Vector2(200, 136)
+[node name="Ghost1" parent="." instance=ExtResource("3_4ci76")]
+position = Vector2(193, 70)
 id = 1
-npc_name = "Jim"
+npc_name = "Nick"
 
-[node name="Ghost" parent="." instance=ExtResource("3_4ci76")]
-position = Vector2(193, 158)
+[node name="Villager2" parent="." instance=ExtResource("1_0auvh")]
+position = Vector2(173, 192)
 id = 2
-npc_name = "John"
+npc_name = "Angela"
 
-[connection signal="mouse_entered" from="Villager" to="Villager/Name" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Villager" to="Villager/Name" method="_on_mouse_exited"]
+[node name="Villager3" parent="." instance=ExtResource("1_0auvh")]
+position = Vector2(133, 119)
+id = 3
+npc_name = "Mary"
+
+[node name="Villager4" parent="." instance=ExtResource("1_0auvh")]
+position = Vector2(232, 122)
+id = 4
+npc_name = "Roy"
+
+[node name="Villager5" parent="." instance=ExtResource("1_0auvh")]
+position = Vector2(128, 73)
+id = 5
+npc_name = "Chad"
+
+[node name="Villager6" parent="." instance=ExtResource("1_0auvh")]
+position = Vector2(168, 47)
+id = 6
+npc_name = "Vince"
+
+[node name="Villager7" parent="." instance=ExtResource("1_0auvh")]
+position = Vector2(209, 87)
+id = 7
+npc_name = "Alice"
+
+[node name="Villager8" parent="." instance=ExtResource("1_0auvh")]
+position = Vector2(175, 152)
+id = 8
+npc_name = "Hershal"
+
+[node name="Forest" parent="." instance=ExtResource("5_6dytf")]
+position = Vector2(243, 13)
+
+[node name="Stream" parent="." instance=ExtResource("6_6ynix")]
+position = Vector2(126, 224)
+
+[node name="Crops" parent="." instance=ExtResource("7_7r6mo")]
+position = Vector2(237, 224)
+
+[connection signal="mouse_entered" from="Villager2" to="Villager2/Name" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Villager2" to="Villager2/Name" method="_on_mouse_exited"]
