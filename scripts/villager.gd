@@ -26,7 +26,7 @@ func get_sick(days) :
 	
 	sickness += days
 
-func do_action(action) :
+func do_action() :
 	pass
 
 func day_pass(remove_hunger, remove_thirst, remove_warmth):
