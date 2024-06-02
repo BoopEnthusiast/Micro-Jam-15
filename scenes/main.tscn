@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cji63ii4aqhq"]
+[gd_scene load_steps=31 format=3 uid="uid://cji63ii4aqhq"]
 
 [ext_resource type="PackedScene" uid="uid://b6mbk30x5y2go" path="res://scenes/villager.tscn" id="1_0auvh"]
 [ext_resource type="PackedScene" uid="uid://dgfjitk2aq4uc" path="res://scenes/ui.tscn" id="2_nqree"]
@@ -17,15 +17,67 @@ func _enter_tree():
 	Singleton.main_node = self
 "
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_c3t1r"]
-vertices = PackedVector2Array(1455, 843, 1321, 843, 1321, 613, 1455, 613)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_b3p50"]
+vertices = PackedVector2Array(128, 172, 117, 155, 117, 149, 157, 180, 146, 193, 152, 220, 172, 235, 164, 235, 251, 235, 189, 235, 202, 187, 251, 168)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 4, 3, 6, 7), PackedInt32Array(8, 9, 10, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(182, 240, 256, 240, 256, 161, 198, 183), PackedVector2Array(179, 240, 162, 240, 148, 223, 141, 195, 124, 175, 112, 157, 112, 139, 162, 178)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 5.0
+
+[sub_resource type="GDScript" id="GDScript_7xrtd"]
+script/source = "extends Marker2D
+
+
+func _enter_tree():
+	pass
+"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_txynx"]
+vertices = PackedVector2Array(251, 235, 189, 235, 202, 187, 251, 168)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(1316, 608, 1316, 848, 1460, 848, 1460, 608)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(182, 240, 256, 240, 256, 161, 198, 183)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 5.0
+
+[sub_resource type="GDScript" id="GDScript_s2vj8"]
+script/source = "extends Marker2D
+
+
+func _enter_tree():
+	pass
+"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_vb12v"]
+vertices = PackedVector2Array(251, 235, 189, 235, 202, 187, 251, 168, 203, 43, 171, 28, 169, 5, 251, 5, 251, 65, 226, 64)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(4, 8, 9)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(182, 240, 256, 240, 256, 161, 198, 183), PackedVector2Array(164, 0, 167, 31, 200, 47, 224, 69, 256, 71, 256, 0)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 5.0
+
+[sub_resource type="GDScript" id="GDScript_v3aog"]
+script/source = "extends Marker2D
+
+
+func _enter_tree():
+	pass
+"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_c3t1r"]
+vertices = PackedVector2Array(1409, 677, 1426, 710, 1419, 741, 1401, 716, 1397, 703, 1397, 729, 1387, 762, 1389, 737, 1376, 741, 1343, 751, 1363, 737, 1389, 695, 1366, 661, 1376, 691, 1355, 729, 1327, 719, 1351, 716, 1338, 671, 1355, 703, 1363, 695)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 3, 2, 6), PackedInt32Array(7, 5, 6), PackedInt32Array(8, 7, 6), PackedInt32Array(8, 6, 9, 10), PackedInt32Array(0, 4, 11, 12), PackedInt32Array(12, 11, 13), PackedInt32Array(14, 10, 9, 15), PackedInt32Array(16, 14, 15), PackedInt32Array(16, 15, 17, 18), PackedInt32Array(19, 18, 17, 12), PackedInt32Array(12, 13, 19)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1334, 667, 1322, 718, 1341, 756, 1388, 768, 1424, 745, 1432, 711, 1411, 672, 1367, 656)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8konf"]
 radius = 20.025
+
+[sub_resource type="GDScript" id="GDScript_iaq4d"]
+script/source = "extends Marker2D
+
+
+func _enter_tree():
+	pass"
 
 [sub_resource type="Curve" id="Curve_c55bt"]
 _data = [Vector2(0, 1), 0.0, -0.229918, 0, 0, Vector2(0.992509, 0), -2.52763, 0.0, 0, 0]
@@ -184,29 +236,41 @@ _data = {
 [node name="Main" type="Node2D"]
 script = SubResource("GDScript_0sumy")
 
-[node name="NavMesh" type="NavigationRegion2D" parent="."]
+[node name="WaterArea" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_b3p50")
+
+[node name="TeleportWater" type="Marker2D" parent="WaterArea"]
+position = Vector2(150, 185)
+script = SubResource("GDScript_7xrtd")
+
+[node name="CropArea" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_txynx")
+
+[node name="TeleportCrop" type="Marker2D" parent="CropArea"]
+position = Vector2(215, 191)
+script = SubResource("GDScript_s2vj8")
+
+[node name="ForestArea" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_vb12v")
+
+[node name="TeleportForest" type="Marker2D" parent="ForestArea"]
+position = Vector2(207, 38)
+script = SubResource("GDScript_v3aog")
+
+[node name="HomeArea" type="NavigationRegion2D" parent="."]
 position = Vector2(-1204, -608)
 navigation_polygon = SubResource("NavigationPolygon_c3t1r")
 
-[node name="BackgroundCollider" type="StaticBody2D" parent="NavMesh"]
+[node name="BackgroundCollider" type="StaticBody2D" parent="HomeArea"]
 position = Vector2(1204, 608)
 
-[node name="FireCollider" type="CollisionShape2D" parent="NavMesh/BackgroundCollider"]
+[node name="FireCollider" type="CollisionShape2D" parent="HomeArea/BackgroundCollider"]
 position = Vector2(172, 108)
 shape = SubResource("CircleShape2D_8konf")
-disabled = true
 
-[node name="WaterCollider" type="CollisionPolygon2D" parent="NavMesh/BackgroundCollider"]
-polygon = PackedVector2Array(112, 159, 127, 181, 139, 195, 142, 214, 148, 226, 160, 240, 112, 240)
-disabled = true
-
-[node name="ForestCollider" type="CollisionPolygon2D" parent="NavMesh/BackgroundCollider"]
-polygon = PackedVector2Array(175, 0, 177, 23, 194, 34, 209, 27, 221, 42, 232, 57, 256, 56, 256, 0)
-disabled = true
-
-[node name="FieldCollider" type="CollisionPolygon2D" parent="NavMesh/BackgroundCollider"]
-polygon = PackedVector2Array(256, 177, 247, 182, 225, 195, 207, 213, 196, 226, 194, 240, 256, 240)
-disabled = true
+[node name="TeleportHome" type="Marker2D" parent="HomeArea"]
+position = Vector2(1354, 686)
+script = SubResource("GDScript_iaq4d")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -223,50 +287,42 @@ offset_bottom = 240.0
 texture = ExtResource("2_q7ja4")
 
 [node name="Ghost1" parent="." instance=ExtResource("3_4ci76")]
-position = Vector2(193, 70)
-collision_mask = 1
+position = Vector2(191, 74)
 id = 1
 npc_name = "Nick"
 
 [node name="Villager2" parent="." instance=ExtResource("1_0auvh")]
-position = Vector2(173, 192)
-collision_mask = 1
+position = Vector2(207, 120)
 id = 2
 npc_name = "Angela"
 
 [node name="Villager3" parent="." instance=ExtResource("1_0auvh")]
-position = Vector2(133, 119)
-collision_mask = 1
+position = Vector2(136, 120)
 id = 3
 npc_name = "Mary"
 
 [node name="Villager4" parent="." instance=ExtResource("1_0auvh")]
 position = Vector2(232, 122)
-collision_mask = 1
 id = 4
 npc_name = "Roy"
 
 [node name="Villager5" parent="." instance=ExtResource("1_0auvh")]
-position = Vector2(128, 73)
-collision_mask = 1
+position = Vector2(138, 81)
 id = 5
 npc_name = "Chad"
 
 [node name="Villager6" parent="." instance=ExtResource("1_0auvh")]
-position = Vector2(168, 47)
-collision_mask = 1
+position = Vector2(162, 70)
 id = 6
 npc_name = "Vince"
 
 [node name="Villager7" parent="." instance=ExtResource("1_0auvh")]
-position = Vector2(209, 87)
-collision_mask = 1
+position = Vector2(206, 90)
 id = 7
 npc_name = "Alice"
 
 [node name="Villager8" parent="." instance=ExtResource("1_0auvh")]
-position = Vector2(175, 152)
-collision_mask = 1
+position = Vector2(177, 140)
 id = 8
 npc_name = "Hershal"
 
