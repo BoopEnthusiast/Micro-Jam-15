@@ -33,7 +33,7 @@ script/source = "extends Marker2D
 
 
 func _enter_tree():
-	pass
+	Singleton.tele_water = self
 "
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_txynx"]
@@ -48,7 +48,7 @@ script/source = "extends Marker2D
 
 
 func _enter_tree():
-	pass
+	Singleton.tele_crop = self
 "
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vb12v"]
@@ -63,7 +63,7 @@ script/source = "extends Marker2D
 
 
 func _enter_tree():
-	pass
+	Singleton.tele_forest = self
 "
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c3t1r"]
@@ -81,7 +81,7 @@ script/source = "extends Marker2D
 
 
 func _enter_tree():
-	pass
+	Singleton.tele_home = self
 "
 
 [sub_resource type="Curve" id="Curve_c55bt"]
