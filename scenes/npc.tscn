@@ -1,14 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://ou2n5imicko4"]
+[gd_scene load_steps=9 format=3 uid="uid://ou2n5imicko4"]
 
 [ext_resource type="Script" path="res://scripts/npc.gd" id="1_ub8a0"]
 [ext_resource type="Script" path="res://scripts/npc_navigation.gd" id="2_p53yk"]
+[ext_resource type="Script" path="res://scripts/npc_body.gd" id="3_j5kvx"]
 [ext_resource type="Script" path="res://scripts/npc_hair.gd" id="3_svcm4"]
 [ext_resource type="Script" path="res://scripts/name.gd" id="3_vt8ft"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x12lm"]
 size = Vector2(6, 8)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_xolb6"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_s3vn6"]
 
 [sub_resource type="Theme" id="Theme_ssi5f"]
 default_font_size = 16
@@ -27,7 +28,8 @@ script = ExtResource("2_p53yk")
 shape = SubResource("RectangleShape2D_x12lm")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_xolb6")
+sprite_frames = SubResource("SpriteFrames_s3vn6")
+script = ExtResource("3_j5kvx")
 
 [node name="Hair" type="Sprite2D" parent="."]
 script = ExtResource("3_svcm4")

@@ -1,4 +1,4 @@
-extends Sprite2D
+class_name NPCHair extends Sprite2D
 
 
 func _on_npc_ready_done():

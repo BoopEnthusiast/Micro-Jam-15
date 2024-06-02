@@ -1,4 +1,4 @@
-class_name NameLabel extends Label
+class_name NPCNameLabel extends Label
 
 
 func _on_npc_ready_done():
