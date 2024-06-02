@@ -100,6 +100,10 @@ func end_day():
 	food += crops.claimed_resources
 	water += stream.claimed_resources
 	
+	forest.resource_storage -= forest.claimed_resources
+	crops.resource_storage -= crops.claimed_resources
+	stream.resource_storage -= stream.claimed_resources
+	
 	forest.claimed_resources = 0
 	crops.claimed_resources = 0
 	stream.claimed_resources = 0
