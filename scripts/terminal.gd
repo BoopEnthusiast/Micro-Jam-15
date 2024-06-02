@@ -47,7 +47,6 @@ func _on_text_changed():
 		text = ""
 		enter_sound.play()
 	else:
-		print("playing_keyboard sound")
 		keyboard_sounds.play()
 	
 	# Limit text length
