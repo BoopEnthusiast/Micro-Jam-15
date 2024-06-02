@@ -30,7 +30,7 @@ window/stretch/mode="viewport"
 [gui]
 
 fonts/dynamic_fonts/use_oversampling=false
-theme/custom_font="res://resources/Pixel64_v1.2.ttf"
+theme/custom_font="res://resources/quaver.ttf"
 
 [rendering]
 

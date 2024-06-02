@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgfjitk2aq4uc"]
+[gd_scene load_steps=6 format=3 uid="uid://dgfjitk2aq4uc"]
 
 [ext_resource type="Script" path="res://scripts/terminal_log.gd" id="1_2ttvf"]
 [ext_resource type="Script" path="res://scripts/terminal.gd" id="2_t6jp4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dx1ii"]
 bg_color = Color(0.0509804, 0.129412, 0.278431, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1lnew"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qm2ex"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -51,25 +55,36 @@ alignment = 2
 
 [node name="Log" type="RichTextLabel" parent="TextBackground/LogContainer"]
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
 fit_content = true
 autowrap_mode = 1
 script = ExtResource("1_2ttvf")
 
-[node name="Terminal" type="TextEdit" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0102041
-anchor_top = 0.891667
-anchor_right = 0.989796
-anchor_bottom = 0.99375
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.843137, 0.290196, 0.780392, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_dx1ii")
-placeholder_text = " 'help' for commands"
-script = ExtResource("2_t6jp4")
-metadata/_edit_use_anchors_ = true
+[node name="TerminalBackground" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 214.0
+offset_right = 111.0
+offset_bottom = 239.0
+color = Color(0.0509804, 0.129412, 0.278431, 1)
 
-[connection signal="caret_changed" from="Terminal" to="Terminal" method="_on_caret_changed"]
-[connection signal="text_changed" from="Terminal" to="Terminal" method="_on_text_changed"]
+[node name="Terminal" type="TextEdit" parent="TerminalBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.843137, 0.290196, 0.780392, 1)
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_dx1ii")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1lnew")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_qm2ex")
+placeholder_text = "'help' for commands"
+script = ExtResource("2_t6jp4")
+
+[connection signal="caret_changed" from="TerminalBackground/Terminal" to="TerminalBackground/Terminal" method="_on_caret_changed"]
+[connection signal="text_changed" from="TerminalBackground/Terminal" to="TerminalBackground/Terminal" method="_on_text_changed"]
