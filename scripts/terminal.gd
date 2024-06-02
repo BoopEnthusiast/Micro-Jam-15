@@ -117,7 +117,7 @@ func entered_command() -> void:
 		if len(command) == 0:
 			log_node.log_error("cat requires name of file. List directories and files with ls")
 		
-		if command == GHOST_DIRECTORY or VILLAGER_DIRECTORY or RESOURCE_DIRECTORY:
+		if command == GHOST_DIRECTORY or command == VILLAGER_DIRECTORY or command == RESOURCE_DIRECTORY:
 			log_node.log_error("That is a directory, not a file")
 		
 		elif command.ends_with(GHOST_FILE_EXTENSION) and current_directory == GHOST_DIRECTORY:
