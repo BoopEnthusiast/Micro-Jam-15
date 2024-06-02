@@ -46,5 +46,8 @@ func _physics_process(_delta):
 	move_and_slide()
 
 
-func do_action() -> void:
-	pass
+func do_action(action):
+	assert(false, "Please implement function on " + self.name)
+
+
+
