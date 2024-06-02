@@ -1,13 +1,21 @@
 extends TextEdit
 
 
+# Constants
+const GHOST_DIRECTORY = "ghost"
+const VILLAGER_DIRECTORY = "villager"
+const GHOST_FILE_EXTENSION = ".gs"
+const VILLAGER_FILE_EXTENSION = ".vl"
+
+## Variables
+# Caret variables
 var last_caret_column: int
 
+# Command variables
+var command_list = ["help - print this", "ls - list files", "pwd - print current directory", "cd <dir name> - change directory", "cat <file name> - print file contents"]
+var current_directory: String = ""
+
 @onready var log_node = $"../TextBackground/LogContainer/Log"
-
-
-var command_list = ["help - print this", "ls - list files", "cat <name> - print file contents"]
-
 
 func _ready():
 	grab_focus()
@@ -65,10 +73,29 @@ func entered_command() -> void:
 	var command = text.to_lower().strip_edges()
 	if command == "help":
 		print_help()
+	
+	if command == "ls":
+		if current_directory == GHOST_DIRECTORY:
+			for ghost in Singleton.ghosts:
+				log_node.add_log(ghost.npc_name + GHOST_FILE_EXTENSION)
+		elif current_directory == VILLAGER_DIRECTORY:
+			for villager in Singleton.villagers:
+				log_node.add_log(villager.npc_name + VILLAGER_FILE_EXTENSION)
+		else:
+			log_node.add_log(GHOST_DIRECTORY)
+			log_node.add_log(VILLAGER_DIRECTORY)
+	
+	elif command == "pwd":
+		log_node.add_log("/" + current_directory)
+	
+	
+	
 	elif command.begins_with("chop "):
 		command = command.lstrip("chop ")
+	
 	elif command.begins_with("chop"):
 		log_node.log_error("chop requires more arguments")
+	
 	else:
 		log_node.log_error("Could not parse command")
 
