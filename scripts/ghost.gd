@@ -16,13 +16,13 @@ func do_action():
 			actions.CHOP_TREE:
 				Singleton.forest.chop_tree()
 			actions.GROW_TREE:
-				Singleton.forest.trees += 1
+				Singleton.forest.grow_tree()
 			actions.GROW_CROPS:
-				Singleton.crops.crops += 1
+				Singleton.crops.grow_crops()
 			actions.HARVEST_CROPS:
 				Singleton.crops.harvest_crops()
 			actions.COLLECT_WATER:
-				Singleton.stream.resource_storage += 1
+				Singleton.stream.collect_water()
 			actions.HEAL_VILLAGER:
 				sick_villager.sickness -= 1
 		action = actions.IDLE

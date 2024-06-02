@@ -406,12 +406,14 @@ position = Vector2(126, 224)
 
 [node name="BucketWater" type="AudioStreamPlayer" parent="Stream"]
 stream = SubResource("AudioStreamRandomizer_ymk4d")
+volume_db = -8.19
 
 [node name="Crops" parent="." instance=ExtResource("7_7r6mo")]
 position = Vector2(237, 224)
 
 [node name="CollectCrops" type="AudioStreamPlayer" parent="Crops"]
 stream = SubResource("AudioStreamRandomizer_u8rsh")
+volume_db = 2.27
 
 [node name="Blizzard" type="GPUParticles2D" parent="."]
 position = Vector2(175, 111)

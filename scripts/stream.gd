@@ -10,3 +10,4 @@ func _enter_tree():
 func collect_water():
 	generate_resource(5)
 	bucket_water.play()
+	print("hello")

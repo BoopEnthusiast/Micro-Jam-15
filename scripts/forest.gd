@@ -9,6 +9,9 @@ func _enter_tree():
 	Singleton.forest = self
 
 
+func grow_tree():
+	trees += 1
+
 func chop_tree():
 	trees -= 1
 	generate_resource(randi_range(4,6))
