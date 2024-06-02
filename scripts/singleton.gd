@@ -16,6 +16,8 @@ var stream: Stream
 
 var main_node: Node2D
 
+var terminal_log: RichTextLabel
+
 
 func _ready():
 	villagers = get_tree().get_nodes_in_group("villager") as Array[Villager]

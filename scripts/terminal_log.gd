@@ -1,6 +1,11 @@
 extends RichTextLabel
 
 
+func _enter_tree():
+	Singleton.terminal_log = self
+
+
+
 func add_log(text_to_log: String) -> void:
 	append_text("\n [color=#d74ac7]%s[/color]" % [text_to_log.replace("[", "[lb]")])
 

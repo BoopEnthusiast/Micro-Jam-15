@@ -20,9 +20,17 @@ var is_thirsty = false
 var is_cold = false
 var is_busy = false
 
+const GHOST = preload("res://scenes/ghost.tscn")
+
 # functions
 func death():
-	pass
+	var new_ghost = GHOST.instantiate()
+	new_ghost.id = id
+	new_ghost.name = name
+	new_ghost.global_position = global_position
+	Singleton.main_node.add_child(new_ghost)
+	Singleton.terminal_log.log_error(npc_name + " has died")
+	queue_free()
 
 func get_sick(days) :
 	var sick_chance = 400 - hunger - thirst - warmth - health
