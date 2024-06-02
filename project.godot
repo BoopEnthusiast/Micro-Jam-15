@@ -27,6 +27,14 @@ window/size/viewport_height=240
 window/size/mode=2
 window/stretch/mode="viewport"
 
+[file_customization]
+
+folder_colors={
+"res://resources/": "yellow",
+"res://scenes/": "blue",
+"res://scripts/": "green"
+}
+
 [gui]
 
 fonts/dynamic_fonts/use_oversampling=false
