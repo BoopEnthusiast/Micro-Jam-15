@@ -88,7 +88,22 @@ func entered_command() -> void:
 	elif command == "pwd":
 		log_node.add_log("/" + current_directory)
 	
+	elif command.begins_with("cd "):
+		command = command.lstrip("cd ")
+		if len(command) == 0:
+			log_node.log_error("cd requires name of directory. list directories and files with ls, use .. to go down a directory")
+		else:
+			if command == GHOST_DIRECTORY:
+				current_directory = GHOST_DIRECTORY
+			elif command == VILLAGER_DIRECTORY:
+				current_directory = VILLAGER_DIRECTORY
+			elif command == "..":
+				current_directory = ""
+			else:
+				log_node.log_error("did not recognize directory. list directories and files with ls, use .. to go down a directory")
 	
+	elif command.begins_with("cd"):
+		log_node.log_error("cd requires name of directory. list directories and files with ls, use .. to go down a directory")
 	
 	elif command.begins_with("chop "):
 		command = command.lstrip("chop ")
