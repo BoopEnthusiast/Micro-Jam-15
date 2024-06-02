@@ -86,4 +86,15 @@ func day_pass(remove_hunger, remove_thirst, remove_warmth):
 	# Kill villager if any survival variable are 0
 	if hunger <= 0 or thirst <= 0 or warmth <= 0 or health <= 0:
 		death()
+		
+		
+	for resource: Resources in get_tree().get_nodes_in_group("resources"):
+		if resource.resource_storage - resource.claimed_resources > 0:
+			if resource.resource_storage - resource.claimed_resources < 5:
+				resource.claimed_resources = resource.resource_storage
+			else:
+				resource.claimed_resources += 5
+			break
+	
+	
 	
