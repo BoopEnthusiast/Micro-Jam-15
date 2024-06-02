@@ -10,10 +10,15 @@ var health = 100
 
 var sickness = 0
 
+var days_busy
+var big_haul
+var haul_resource
+
 # Booleans
 var is_hungry = false
 var is_thirsty = false
 var is_cold = false
+var is_busy = false
 
 # functions
 func death():
@@ -92,10 +97,11 @@ func day_pass(remove_hunger, remove_thirst, remove_warmth):
 	var claimed_wood
 	var claimed_food
 	var claimed_water
+	var resource_difference
 	
 	for resource: Resources in get_tree().get_nodes_in_group("resources"):
 		if resource is Forest:
-			claimed_wood = resource.claimed_resources
+			claimed_wood = resource.claimed_resources + resource.resources_in_stasis
 		if resource is Crops:
 			claimed_food = resource.claimed_resources
 		if resource is Stream:
@@ -115,14 +121,46 @@ func day_pass(remove_hunger, remove_thirst, remove_warmth):
 	else:
 		#wood is smallest
 		smallest_resource = Forest
-			
-	for resource: Resources in get_tree().get_nodes_in_group("resources"):
-		if typeof(resource) == typeof(smallest_resource): 
-			if resource.resource_storage - resource.claimed_resources > 0:
-				if resource.resource_storage - resource.claimed_resources < 5:
-					resource.claimed_resources = resource.resource_storage
-				else:
-					resource.claimed_resources += 5
 		
-	
+		
+	if not is_busy:
+		for resource: Resources in get_tree().get_nodes_in_group("resources"):
+			resource_difference = resource.resource_storage - resource.claimed_resource
+			if typeof(resource) == typeof(smallest_resource): 
+				if resource_difference > 0:
+					if resource_difference >= 10:
+						if resource_difference >= 15:
+							if resource_difference >= 20:
+								resource.resources_in_stasis += 5
+								days_busy += 1
+								big_haul += 5
+							resource.resources_in_stasis += 5
+							days_busy += 1
+							big_haul += 5
+						resource.resources_in_stasis += 10
+						days_busy += 1
+						is_busy = true
+						big_haul += 10
+						haul_resource = resource
+					if resource_difference < 5:
+						resource.claimed_resources = resource.resource_storage
+					elif resource_difference < 10:
+						resource.claimed_resources += 5
+		
+	if is_busy and big_haul == 20:
+		big_haul = 0
+		haul_resource.resources_in_stasis -= 20
+		haul_resource.claimed_resources += 20
+		is_busy = false
+	if is_busy and big_haul == 15:
+		big_haul = 0
+		haul_resource.resources_in_stasis -= 15
+		haul_resource.claimed_resources += 15
+		is_busy = false
+	if is_busy and big_haul == 15:
+		big_haul = 0
+		haul_resource.resources_in_stasis -= 10
+		haul_resource.claimed_resources += 10
+		is_busy = false
+	days_busy -= 1
 
