@@ -145,8 +145,8 @@ func entered_command() -> void:
 					log_node.add_log("Is sick: " + str(villager.sickness > 0))
 					found_villager = true
 					break
-				if not found_villager:
-					log_node.log_error("Could not find file")
+			if not found_villager:
+				log_node.log_error("Could not find file")
 		elif command.ends_with(RESOURCE_FILE_EXTENSION) and current_directory == RESOURCE_DIRECTORY:
 			if command == "forest" + RESOURCE_FILE_EXTENSION:
 				log_node.add_log("Trees: " + str(Singleton.forest.trees))
