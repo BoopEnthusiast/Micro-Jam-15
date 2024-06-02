@@ -10,6 +10,10 @@ var water = 0
 
 var villagers: Array
 var ghosts: Array
+var forest: Forest
+var crops: Crops
+var stream: Stream
+
 
 func _ready():
 	villagers = get_tree().get_nodes_in_group("villager") as Array[Villager]
