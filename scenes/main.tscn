@@ -1,9 +1,11 @@
-[gd_scene load_steps=39 format=3 uid="uid://cji63ii4aqhq"]
+[gd_scene load_steps=42 format=3 uid="uid://cji63ii4aqhq"]
 
 [ext_resource type="PackedScene" uid="uid://b6mbk30x5y2go" path="res://scenes/villager.tscn" id="1_0auvh"]
+[ext_resource type="Texture2D" uid="uid://cwwp2qbcv2xsm" path="res://resources/Backdrop1.png" id="2_85y2r"]
 [ext_resource type="PackedScene" uid="uid://dgfjitk2aq4uc" path="res://scenes/ui.tscn" id="2_nqree"]
-[ext_resource type="Texture2D" uid="uid://ce3411kdxferq" path="res://resources/Backdrop.png" id="2_q7ja4"]
 [ext_resource type="PackedScene" uid="uid://blsmf1r2lvqwy" path="res://scenes/ghost.tscn" id="3_4ci76"]
+[ext_resource type="Texture2D" uid="uid://cru42dn8qlifb" path="res://resources/Backdrop2.png" id="3_kbtfq"]
+[ext_resource type="Texture2D" uid="uid://dhmouohp0ji7y" path="res://resources/Backdrop3.png" id="4_axxdq"]
 [ext_resource type="PackedScene" uid="uid://dasa81l216kgx" path="res://scenes/forest.tscn" id="5_6dytf"]
 [ext_resource type="PackedScene" uid="uid://bcfl5n8v8kvhg" path="res://scenes/stream.tscn" id="6_6ynix"]
 [ext_resource type="PackedScene" uid="uid://c0gxw2wri6s2j" path="res://scenes/crops.tscn" id="7_7r6mo"]
@@ -87,6 +89,14 @@ script/source = "extends Marker2D
 func _enter_tree():
 	Singleton.tele_home = self
 "
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_6ojrh"]
+frames = 3
+frame_0/texture = ExtResource("2_85y2r")
+frame_1/texture = ExtResource("3_kbtfq")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("4_axxdq")
+frame_2/duration = 1.0
 
 [sub_resource type="Curve" id="Curve_c55bt"]
 _data = [Vector2(0, 1), 0.0, -0.229918, 0, 0, Vector2(0.992509, 0), -2.52763, 0.0, 0, 0]
@@ -294,7 +304,7 @@ layer = -1
 offset_left = 112.0
 offset_right = 256.0
 offset_bottom = 240.0
-texture = ExtResource("2_q7ja4")
+texture = SubResource("AnimatedTexture_6ojrh")
 
 [node name="Ghost1" parent="." instance=ExtResource("3_4ci76")]
 position = Vector2(191, 74)
