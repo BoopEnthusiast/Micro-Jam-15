@@ -1,13 +1,18 @@
 extends TextEdit
 
 
-# Constants
+## Constants
+# Directories
 const GHOST_DIRECTORY = "ghosts"
 const VILLAGER_DIRECTORY = "villagers"
 const RESOURCE_DIRECTORY = "resources"
+
+# File extensions
 const GHOST_FILE_EXTENSION = ".gs"
 const VILLAGER_FILE_EXTENSION = ".vl"
 const RESOURCE_FILE_EXTENSION = ".rs"
+
+# Misc
 const RESROUCE_FILES = ["Forest", "Stream", "Crops", "Camp"]
 
 ## Variables
@@ -16,9 +21,9 @@ var last_caret_column: int
 var current_ghost_index: int
 
 # Command variables
-var help_command_list = ["help - print this", "help file - print file commands", "help ghost - print selected ghost commands"]
+var help_command_list = ["help - print this", "help file - print file commands", "help ghost - print selected ghost commands", "end - end current day and progress actions"]
 var file_command_list = ["ls - list files and directories", "pwd - print current directory", "cd <directory name> - change directory", "cat <file name> - print file contents"]
-var ghost_command_list = ["selected - print selected ghost", "plant - plant a new tree", "chop - drop wood for villagers to collect", "sow - plant new crops", "harvest - drop food for villagers to collect", "bucket - drop water for villagers to collect"]
+var ghost_command_list = ["selected - print selected ghost", "plant - plant a new tree", "chop - drop wood for villagers to collect", "sow - plant new crops", "harvest - drop food for villagers to collect", "bucket - drop water for villagers to collect, next - skip this ghost"]
 var current_directory: String = ""
 
 @onready var log_node = $"../../TextBackground/LogContainer/Log"
@@ -52,6 +57,7 @@ func _on_caret_changed():
 
 func entered_command() -> void:
 	var command = text.to_lower().strip_edges()
+	
 #region Help command
 	if command == "help":
 		print_help(help_command_list)
@@ -158,6 +164,8 @@ func entered_command() -> void:
 				log_node.add_log("Warmth: " + str(Singleton.wood))
 				log_node.add_log("Villagers alive: " + str(Singleton.villagers.size()))
 				log_node.add_log("Ghosts unalive: " + str(Singleton.ghosts.size()))
+			else:
+				log_node.log_error("Could not find file")
 		else:
 			log_node.log_error("Could not find file")
 	
@@ -170,7 +178,43 @@ func entered_command() -> void:
 		log_node.add_log(str(Singleton.ghosts[current_ghost_index].npc_name))
 #endregion
 	
+	elif command == "plant":
+		if Singleton.ghosts[current_ghost_index].action == Ghost.actions.IDLE:
+			Singleton.ghosts[current_ghost_index].action_forest_grow()
+			increase_ghost()
+		else:
+			log_node.log_error("Ghost is already perfoming task, they can only wait")
 	
+	elif command == "chop":
+		if Singleton.ghosts[current_ghost_index].action == Ghost.actions.IDLE:
+			Singleton.ghosts[current_ghost_index].action_forest_chop()
+			increase_ghost()
+		else:
+			log_node.log_error("Ghost is already perfoming task, they can only wait")
+	
+	elif command == "sow":
+		if Singleton.ghosts[current_ghost_index].action == Ghost.actions.IDLE:
+			Singleton.ghosts[current_ghost_index].action_crops_grow()
+			increase_ghost()
+		else:
+			log_node.log_error("Ghost is already perfoming task, they can only wait")
+	
+	elif command == "harvest":
+		if Singleton.ghosts[current_ghost_index].action == Ghost.actions.IDLE:
+			Singleton.ghosts[current_ghost_index].action_harvest_crops()
+			increase_ghost()
+		else:
+			log_node.log_error("Ghost is already perfoming task, they can only wait")
+	
+	elif command == "bucket":
+		if Singleton.ghosts[current_ghost_index].action == Ghost.actions.IDLE:
+			Singleton.ghosts[current_ghost_index].action_collect_water()
+			increase_ghost()
+		else:
+			log_node.log_error("Ghost is already perfoming task, they can only wait")
+	
+	elif command == "next":
+		increase_ghost()
 	
 #region Parse error
 	else:
@@ -182,3 +226,7 @@ func print_help(which_help: Array) -> void:
 	log_node.add_bb_log("[color=#ff82bd]Available commands:")
 	for command in which_help:
 		log_node.add_log(command)
+
+
+func increase_ghost() -> void:
+	log_node.add_log(Singleton.ghosts[current_ghost_index].npc_name + " is now doing: " + 

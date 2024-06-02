@@ -14,6 +14,8 @@ var forest: Forest
 var crops: Crops
 var stream: Stream
 
+var main_node: Node2D
+
 
 func _ready():
 	villagers = get_tree().get_nodes_in_group("villager") as Array[Villager]

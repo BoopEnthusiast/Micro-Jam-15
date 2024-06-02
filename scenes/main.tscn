@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cji63ii4aqhq"]
+[gd_scene load_steps=11 format=3 uid="uid://cji63ii4aqhq"]
 
 [ext_resource type="PackedScene" uid="uid://b6mbk30x5y2go" path="res://scenes/villager.tscn" id="1_0auvh"]
 [ext_resource type="PackedScene" uid="uid://dgfjitk2aq4uc" path="res://scenes/ui.tscn" id="2_nqree"]
@@ -7,6 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://dasa81l216kgx" path="res://scenes/forest.tscn" id="5_6dytf"]
 [ext_resource type="PackedScene" uid="uid://bcfl5n8v8kvhg" path="res://scenes/stream.tscn" id="6_6ynix"]
 [ext_resource type="PackedScene" uid="uid://c0gxw2wri6s2j" path="res://scenes/crops.tscn" id="7_7r6mo"]
+
+[sub_resource type="GDScript" id="GDScript_0sumy"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _enter_tree():
+	Singleton.main_node = self
+"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c3t1r"]
 vertices = PackedVector2Array(1434, 670, 1455, 669, 1455, 782, 1401, 716, 1397, 703, 1397, 729, 1449, 786, 1448, 786, 1366, 843, 1356, 831, 1350, 821, 1351, 821, 1395, 832, 1394, 843, 1426, 799, 1389, 737, 1351, 716, 1321, 765, 1321, 613, 1374, 613, 1376, 634, 1355, 703, 1421, 653, 1389, 695, 1398, 648, 1411, 641, 1376, 691, 1376, 741, 1407, 817, 1348, 801, 1335, 786, 1363, 695, 1407, 818, 1363, 737, 1355, 729)
@@ -19,6 +28,7 @@ agent_radius = 5.0
 radius = 20.025
 
 [node name="Main" type="Node2D"]
+script = SubResource("GDScript_0sumy")
 
 [node name="NavMesh" type="NavigationRegion2D" parent="."]
 position = Vector2(-1204, -608)
