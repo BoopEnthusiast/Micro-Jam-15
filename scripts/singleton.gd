@@ -8,9 +8,17 @@ var wood = 0
 var food = 0
 var water = 0
 
+var villagers: Array[Villager]
+var ghosts: Array[Ghost]
+
+func _ready():
+	villagers = get_tree().get_nodes_in_group("villager") as Array[Villager]
+	ghosts = get_tree().get_nodes_in_group("ghost") as Array[Ghost]
+
 
 func end_day():
-	var villagers: Array[Villager] = get_tree().get_nodes_in_group("villager") as Array[Villager]
+	villagers = get_tree().get_nodes_in_group("villager") as Array[Villager]
+	ghosts = get_tree().get_nodes_in_group("ghost") as Array[Ghost]
 	var need_resource: int
 	
 	# evenly distribute resources amonst villagers
