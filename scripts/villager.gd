@@ -23,6 +23,8 @@ var collecting_amount: int
 
 const GHOST = preload("res://scenes/ghost.tscn")
 
+
+
 # functions
 func death():
 	var new_ghost = GHOST.instantiate()
@@ -167,13 +169,14 @@ func day_pass(remove_hunger, remove_thirst, remove_warmth):
 
 
 func claim_resource(priority_resource: Resources) -> void:
-	is_busy = 2
-	if priority_resource.claimed_resources >= 10:
-		priority_resource.claimed_resources = 10
-		collecting_from = priority_resource
-		collecting_amount = priority_resource.claimed_resources
-	else:
-		priority_resource.claimed_resources = priority_resource.resource_storage
-		collecting_from = priority_resource
-		collecting_amount = priority_resource.claimed_resources
-	
+	if priority_resource:
+		if priority_resource.resource_storage - priority_resource.claimed_resources >= 10:
+			is_busy = 2
+			collecting_amount = 10
+			priority_resource.claimed_resources += 10
+			collecting_from = priority_resource
+		elif priority_resource.resource_storage - priority_resource.claimed_resources > 0:
+			is_busy = 1
+			collecting_amount = priority_resource.resource_storage - priority_resource.claimed_resources
+			priority_resource.claimed_resources += priority_resource.resource_storage - priority_resource.claimed_resources
+			collecting_from = priority_resource

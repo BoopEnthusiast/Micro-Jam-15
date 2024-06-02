@@ -24,7 +24,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d4e61"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylb0w"]
 atlas = ExtResource("5_fyclv")
 region = Rect2(0, 0, 6, 8)
 
@@ -37,4 +37,4 @@ frame = 1
 frame_progress = 0.139809
 
 [node name="Hair" parent="." index="3"]
-texture = SubResource("AtlasTexture_d4e61")
+texture = SubResource("AtlasTexture_ylb0w")

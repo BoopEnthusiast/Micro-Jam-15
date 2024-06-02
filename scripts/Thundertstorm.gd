@@ -20,5 +20,5 @@ func activate_thunderstorm():
 func _on_timer_timeout():
 	emitting = false
 
-func _on_thunder_animation_finished(anim_name):
+func _on_thunder_animation_finished(_anim_name):
 	color_rect.visible = false

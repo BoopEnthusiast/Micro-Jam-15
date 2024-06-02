@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://scripts/terminal_log.gd" id="1_2ttvf"]
 [ext_resource type="Script" path="res://scripts/terminal.gd" id="2_t6jp4"]
-[ext_resource type="AudioStream" uid="uid://8ghx3ddq5svu" path="res://resources/sounds/Enter.wav" id="3_e6pkv"]
-[ext_resource type="AudioStream" uid="uid://bbwsymltc8yda" path="res://resources/sounds/Keyboard-001.wav" id="4_arph7"]
-[ext_resource type="AudioStream" uid="uid://bt33c53i4y1ka" path="res://resources/sounds/Keyboard-002.wav" id="5_dyf5c"]
-[ext_resource type="AudioStream" uid="uid://233oao5tytc3" path="res://resources/sounds/Keyboard-003.wav" id="6_8t53g"]
-[ext_resource type="AudioStream" uid="uid://dlf3nlvswab23" path="res://resources/sounds/Keyboard-004.wav" id="7_g28qr"]
-[ext_resource type="AudioStream" uid="uid://byv672ka26i4" path="res://resources/sounds/Keyboard-005.wav" id="8_7toaj"]
-[ext_resource type="AudioStream" uid="uid://colkfwoum3ol0" path="res://resources/sounds/Keyboard-006.wav" id="9_gcyh6"]
+[ext_resource type="AudioStream" uid="uid://dh2fst68tn4gq" path="res://resources/sounds/Enter.wav" id="3_e6pkv"]
+[ext_resource type="AudioStream" uid="uid://cuaqkktduptt6" path="res://resources/sounds/Keyboard-001.wav" id="4_arph7"]
+[ext_resource type="AudioStream" uid="uid://bw1wccvxgbyqw" path="res://resources/sounds/Keyboard-002.wav" id="5_dyf5c"]
+[ext_resource type="AudioStream" uid="uid://d1jkjs7bjc4e8" path="res://resources/sounds/Keyboard-003.wav" id="6_8t53g"]
+[ext_resource type="AudioStream" uid="uid://bai6q6siv0k3e" path="res://resources/sounds/Keyboard-004.wav" id="7_g28qr"]
+[ext_resource type="AudioStream" uid="uid://bdxxlusxnpllp" path="res://resources/sounds/Keyboard-005.wav" id="8_7toaj"]
+[ext_resource type="AudioStream" uid="uid://bi3o4dnfcnoa5" path="res://resources/sounds/Keyboard-006.wav" id="9_gcyh6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dx1ii"]
 bg_color = Color(0.0509804, 0.129412, 0.278431, 1)
