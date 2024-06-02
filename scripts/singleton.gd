@@ -23,6 +23,15 @@ var main_node: Node2D
 
 var terminal_log: RichTextLabel
 
+var tele_water: Marker2D
+var tele_crop: Marker2D
+var tele_forest: Marker2D
+var tele_home: Marker2D
+
+var blizzard_node: GPUParticles2D
+var thunderstorm_node: GPUParticles2D
+var drought_node: AnimationPlayer
+var plague_node: AnimationPlayer
 
 func _ready():
 	villagers = get_tree().get_nodes_in_group("villager") as Array[Villager]
