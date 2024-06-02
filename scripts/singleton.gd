@@ -3,7 +3,7 @@ extends Node
 
 var remaining_days = 50
 
-var next_calamity
+var next_calamity = ""
 var blizzard_days = 0
 var temp_water = 0
 
@@ -43,6 +43,9 @@ func end_day():
 			play_calamity()
 	else:
 		pass # end game win
+	
+	var temp_days = remaining_days % 10
+	terminal_log.add_log(next_calamity + " coming in: " + str(temp_days) + " days")
 	
 	if blizzard_days == 0:
 		stream.resource_storage += temp_water
@@ -90,15 +93,6 @@ func end_day():
 	
 	for ghost: Ghost in ghosts:
 		ghost.do_action()
-	
-	if remaining_days > 0:
-		remaining_days -= 1
-		if remaining_days % 10 == 9:
-			random_calamity()
-		if remaining_days != 50 and remaining_days % 10 == 0:
-			play_calamity()
-	else:
-		pass # end game win
 
 
 func random_calamity():

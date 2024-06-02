@@ -10,7 +10,7 @@ var health = 100
 
 var sickness = 0
 
-var days_busy
+var days_busy = 0
 var big_haul
 var haul_resource
 
@@ -26,10 +26,12 @@ const GHOST = preload("res://scenes/ghost.tscn")
 func death():
 	var new_ghost = GHOST.instantiate()
 	new_ghost.id = id
-	new_ghost.name = name
+	new_ghost.npc_name = npc_name
 	new_ghost.global_position = global_position
+	Singleton.ghosts.append(new_ghost)
 	Singleton.main_node.add_child(new_ghost)
 	Singleton.terminal_log.log_error(npc_name + " has died")
+	Singleton.villagers.erase(self)
 	queue_free()
 
 func get_sick(days) :
@@ -106,9 +108,9 @@ func day_pass(remove_hunger, remove_thirst, remove_warmth):
 		
 		
 	var smallest_resource
-	var claimed_wood
-	var claimed_food
-	var claimed_water
+	var claimed_wood = 0
+	var claimed_food = 0
+	var claimed_water = 0
 	var resource_difference
 	
 	for resource: Resources in get_tree().get_nodes_in_group("resources"):
