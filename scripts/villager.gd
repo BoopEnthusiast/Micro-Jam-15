@@ -105,68 +105,11 @@ func day_pass(remove_hunger, remove_thirst, remove_warmth):
 	# Kill villager if any survival variable are 0
 	if hunger <= 0 or thirst <= 0 or warmth <= 0 or health <= 0:
 		death()
-		
-		
-	var smallest_resource
-	var claimed_wood = Singleton.forest.claimed_resources + Singleton.forest.resources_in_stasis
-	var claimed_food = Singleton.crops.claimed_resources + Singleton.crops.resources_in_stasis
-	var claimed_water = Singleton.crops.claimed_resources + Singleton.crops.resources_in_stasis
-	var resource_difference
 	
+	var priority_resource
+	var secondary_resource
+	var tertiary_resource
 	
-	
-	if Singleton.food + claimed_food < Singleton.water + claimed_water:
-		if Singleton.food + claimed_food < Singleton.wood + claimed_wood:
-			#food is smallest
-			smallest_resource = Crops
-		else:
-			#wood is smallest
-			smallest_resource = Forest
-	elif Singleton.water + claimed_water < Singleton.wood + claimed_wood:
-		#water is smallest
-		smallest_resource = Stream
-	else:
-		#wood is smallest
-		smallest_resource = Forest
-		
-		
-	if not is_busy:
-		for resource: Resources in get_tree().get_nodes_in_group("resource"):
-			resource_difference = resource.resource_storage - resource.claimed_resources
-			if resource.is_class(smallest_resource.get_class()): 
-				if resource_difference > 0:
-					if resource_difference >= 10:
-						if resource_difference >= 15:
-							if resource_difference >= 20:
-								resource.resources_in_stasis += 5
-								days_busy += 1
-								big_haul += 5
-							resource.resources_in_stasis += 5
-							days_busy += 1
-							big_haul += 5
-						resource.resources_in_stasis += 10
-						days_busy += 1
-						is_busy = true
-						big_haul += 10
-						haul_resource = resource
-					if resource_difference < 5:
-						resource.claimed_resources = resource.resource_storage
-					elif resource_difference < 10:
-						resource.claimed_resources += 5
-	if is_busy and big_haul == 20:
-		big_haul = 0
-		haul_resource.resources_in_stasis -= 20
-		haul_resource.claimed_resources += 20
-		is_busy = false
-	if is_busy and big_haul == 15:
-		big_haul = 0
-		haul_resource.resources_in_stasis -= 15
-		haul_resource.claimed_resources += 15
-		is_busy = false
-	if is_busy and big_haul == 15:
-		big_haul = 0
-		haul_resource.resources_in_stasis -= 10
-		haul_resource.claimed_resources += 10
-		is_busy = false
-	days_busy -= 1
-
+	if Singleton.wood < Singleton.water:
+		if Singleton.water < Singleton.food:
+			priority_resource = Singleton.forest
