@@ -9,6 +9,7 @@ func _enter_tree():
 func activate_blizzard():
 	emitting = true
 	timer.start()
+	blizzard_sound.play()
 
 func _on_timer_timeout():
 	emitting = false

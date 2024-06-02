@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cji63ii4aqhq"]
+[gd_scene load_steps=43 format=3 uid="uid://cji63ii4aqhq"]
 
 [ext_resource type="PackedScene" uid="uid://b6mbk30x5y2go" path="res://scenes/villager.tscn" id="1_0auvh"]
 [ext_resource type="Texture2D" uid="uid://cwwp2qbcv2xsm" path="res://resources/Backdrop1.png" id="2_85y2r"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scripts/Plague.gd" id="10_mmax2"]
 [ext_resource type="AudioStream" uid="uid://b3fvs500q7rls" path="res://resources/sounds/Thunder.wav" id="10_yyuhk"]
 [ext_resource type="AudioStream" uid="uid://cw10750vrnbd0" path="res://resources/sounds/Rain.wav" id="11_8r2ic"]
+[ext_resource type="AudioStream" uid="uid://c5x2xffamhuh7" path="res://resources/sounds/blizzard.wav" id="11_o5e4o"]
 [ext_resource type="AudioStream" uid="uid://680xen5p7q2u" path="res://resources/sounds/Fire.wav" id="13_w77b2"]
 [ext_resource type="AudioStream" uid="uid://dllelncxuut0m" path="res://resources/sounds/Plague-001.wav" id="15_xate6"]
 
@@ -369,6 +370,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="BlizzardSound" type="AudioStreamPlayer" parent="Blizzard"]
+stream = ExtResource("11_o5e4o")
 
 [node name="Thundertstorm" type="GPUParticles2D" parent="."]
 position = Vector2(183, 81)
