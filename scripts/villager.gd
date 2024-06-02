@@ -145,53 +145,50 @@ func day_pass(remove_hunger, remove_thirst, remove_warmth):
 			secondary_resource = Singleton.crops
 			tertiary_resource = Singleton.forest
 			
-	var prio_rs = priority_resource.resource_storage - priority_resource.claimed_resources
-	var seco_rs = secondary_resource.resource_storage - secondary_resource.claimed_resources
-	var tert_rs = tertiary_resource.resource_storage - tertiary_resource.claimed_resources
-	
-	if not is_busy:
-		if prio_rs > 0 and not is_busy:
-			if prio_rs >= 20:
-				priority_resource.claimed_resources += 20
-				haul = 20
-			else:
-				priority_resource.claimed_resources = prio_rs
-				haul = prio_rs
-			is_busy = true
-			days_busy = 2
-			goal_resource = priority_resource
-		elif seco_rs > 0 and not is_busy:
-			if seco_rs >= 20:
-				secondary_resource.claimed_resources += 20
-				haul = 20
-			else:
-				secondary_resource.claimed_resources = seco_rs
-				haul = seco_rs
-			is_busy = true
-			days_busy = 2
-			goal_resource = secondary_resource
-		elif tert_rs > 0 and not is_busy:
-			if tert_rs >= 20:
-				tertiary_resource.claimed_resources += 20
-				haul = 20
-			else:
-				tertiary_resource.claimed_resources = tert_rs
-				haul = tert_rs
-			is_busy = true
-			days_busy = 2
-			goal_resource = tertiary_resource
-	else:
-		if days_busy > 0:
-			days_busy -= 1
-		elif days_busy == 0:
-			goal_resource.claimed_resources -= haul
-			goal_resource.resource_storage -= haul
-			if goal_resource is Forest:
-				Singleton.wood += haul
-			elif goal_resource is Stream:
-				Singleton.water += haul
-			elif goal_resource is Crops:
-				Singleton.food += haul
-			haul = 0
-			is_busy = false
+	var pr
+	var sr
+	var tr
+	if priority_resource is Forest:
+		pr = Singleton.wood
+	if priority_resource is Stream:
+		pr = Singleton.water
+	if priority_resource is Crops:
+		pr = Singleton.food
+	if secondary_resource is Forest:
+		sr = Singleton.wood
+	if secondary_resource is Stream:
+		sr = Singleton.water
+	if secondary_resource is Crops:
+		sr = Singleton.food
+	if tertiary_resource is Forest:
+		tr = Singleton.wood
+	if tertiary_resource is Stream:
+		tr = Singleton.water
+	if tertiary_resource is Crops:
+		tr = Singleton.food
+		
+	if priority_resource.resource_storage > 0:
+		if priority_resource.resource_storage >= 10:
+			pr += 10
+			priority_resource.resource_storage -= 10
+		else:
+			pr += priority_resource.resource_storage
+			priority_resource.resource_storage = 0
+			
+	if secondary_resource.resource_storage > 0:
+		if secondary_resource.resource_storage >= 10:
+			sr += 10
+			secondary_resource.resource_storage -= 10
+		else:
+			sr += secondary_resource.resource_storage
+			secondary_resource.resource_storage = 0
+			
+	if tertiary_resource.resource_storage > 0:
+		if tertiary_resource.resource_storage >= 10:
+			tr += 10
+			tertiary_resource.resource_storage -= 10
+		else:
+			tr += tertiary_resource.resource_storage
+			tertiary_resource.resource_storage = 0
+		
 
