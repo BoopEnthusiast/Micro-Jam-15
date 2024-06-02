@@ -70,7 +70,6 @@ func entered_command() -> void:
 		else:
 			log_node.log_error("Could not find command list")
 #endregion
-	
 #region Ls command
 	elif command == "ls":
 		if current_directory == GHOST_DIRECTORY:
@@ -87,12 +86,10 @@ func entered_command() -> void:
 			log_node.add_log(VILLAGER_DIRECTORY)
 			log_node.add_log(RESOURCE_DIRECTORY)
 #endregion
-	
 #region Pwd command
 	elif command == "pwd":
 		log_node.add_log("/" + current_directory)
 #endregion
-	
 #region Cd command
 	elif command.begins_with("cd "):
 		command = command.lstrip("cd ")
@@ -114,7 +111,6 @@ func entered_command() -> void:
 	elif command.begins_with("cd"):
 		log_node.log_error("cd requires name of directory. List directories and files with ls, use .. to go down a directory")
 #endregion
-	
 #region Cat command
 	elif command.begins_with("cat "):
 		command = command.lstrip("cat ")
@@ -172,12 +168,11 @@ func entered_command() -> void:
 	elif command.begins_with("cat"):
 		log_node.log_error("cat requires name of file. List directories and files with ls")
 #endregion
-	
 #region Selected command
 	elif command == "selected":
 		log_node.add_log(str(Singleton.ghosts[current_ghost_index].npc_name))
 #endregion
-	
+#region New Code Region
 	elif command == "plant":
 		if Singleton.ghosts[current_ghost_index].action == Ghost.actions.IDLE:
 			Singleton.ghosts[current_ghost_index].action_forest_grow()
@@ -215,7 +210,7 @@ func entered_command() -> void:
 	
 	elif command == "next":
 		increase_ghost()
-	
+#endregion
 #region Parse error
 	else:
 		log_node.log_error("Could not parse command")
@@ -229,4 +224,4 @@ func print_help(which_help: Array) -> void:
 
 
 func increase_ghost() -> void:
-	log_node.add_log(Singleton.ghosts[current_ghost_index].npc_name + " is now doing: " + 
+	log_node.add_log(Singleton.ghosts[current_ghost_index].npc_name + " is now doing: " + Singleton.ghosts[current_ghost_index].action_string)
