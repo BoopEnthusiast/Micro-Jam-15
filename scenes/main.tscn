@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cji63ii4aqhq"]
+[gd_scene load_steps=34 format=3 uid="uid://cji63ii4aqhq"]
 
 [ext_resource type="PackedScene" uid="uid://b6mbk30x5y2go" path="res://scenes/villager.tscn" id="1_0auvh"]
 [ext_resource type="PackedScene" uid="uid://dgfjitk2aq4uc" path="res://scenes/ui.tscn" id="2_nqree"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://dasa81l216kgx" path="res://scenes/forest.tscn" id="5_6dytf"]
 [ext_resource type="PackedScene" uid="uid://bcfl5n8v8kvhg" path="res://scenes/stream.tscn" id="6_6ynix"]
 [ext_resource type="PackedScene" uid="uid://c0gxw2wri6s2j" path="res://scenes/crops.tscn" id="7_7r6mo"]
+[ext_resource type="Script" path="res://scripts/Thundertstorm.gd" id="8_r1a3o"]
+[ext_resource type="Script" path="res://scripts/Drought.gd" id="9_atjbi"]
+[ext_resource type="Script" path="res://scripts/Plague.gd" id="10_mmax2"]
 
 [sub_resource type="GDScript" id="GDScript_0sumy"]
 script/source = "extends Node2D
@@ -354,6 +357,7 @@ position = Vector2(183, 81)
 amount = 500
 process_material = SubResource("ParticleProcessMaterial_08t40")
 lifetime = 1.7
+script = ExtResource("8_r1a3o")
 
 [node name="Timer" type="Timer" parent="Thundertstorm"]
 
@@ -377,6 +381,7 @@ color = Color(1, 1, 1, 0)
 libraries = {
 "": SubResource("AnimationLibrary_ademg")
 }
+script = ExtResource("9_atjbi")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Drought"]
 
@@ -393,6 +398,7 @@ color = Color(1, 1, 1, 0)
 libraries = {
 "": SubResource("AnimationLibrary_vm2lm")
 }
+script = ExtResource("10_mmax2")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Plague"]
 
@@ -407,3 +413,4 @@ color = Color(1, 1, 1, 0)
 
 [connection signal="mouse_entered" from="Villager2" to="Villager2/Name" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Villager2" to="Villager2/Name" method="_on_mouse_exited"]
+[connection signal="animation_finished" from="Drought" to="Drought" method="_on_animation_finished"]

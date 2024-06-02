@@ -1,12 +1,15 @@
 extends GPUParticles2D
 @onready var timer = $Timer
+@onready var thunder = $Thunder
+
 
 func _enter_tree():
-	Singleton.blizzard_node = self
+	Singleton.thunderstorm_node = self
 
-func activate_blizzard():
+func activate_thunderstorm():
 	emitting = true
 	timer.start()
+	thunder.play("thunderstorm")
 
 func _on_timer_timeout():
 	emitting = false
