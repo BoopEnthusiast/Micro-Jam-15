@@ -8,11 +8,11 @@ var wood = 0
 var food = 0
 var water = 0
 
-var villagers: Array[Villager]
-var ghosts: Array[Ghost]
+var villagers
+var ghosts
 
 func _ready():
-	villagers = get_tree().get_nodes_in_group("villager") as Array[Villager]
+	var villagers_tmp = get_tree().get_nodes_in_group("villager") as Array[Villager]
 	ghosts = get_tree().get_nodes_in_group("ghost") as Array[Ghost]
 
 
