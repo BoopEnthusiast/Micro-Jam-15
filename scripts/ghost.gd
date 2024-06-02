@@ -31,11 +31,14 @@ func do_action():
 
 
 func action_forest_chop():
-	busy_days_left = 1
-	action = actions.CHOP_TREE
-	action_string = "chop"
-	global_position = Singleton.tele_forest.global_position
-	navigation.find_new_path()
+	if Singleton.forest.trees > 0:
+		busy_days_left = 1
+		action = actions.CHOP_TREE
+		action_string = "chop"
+		global_position = Singleton.tele_forest.global_position
+		navigation.find_new_path()
+	else:
+		Singleton.terminal_log.log_error("No trees to chop, ghost will wait")
 
 
 func action_forest_grow():
@@ -54,11 +57,14 @@ func action_crops_grow():
 	navigation.find_new_path()
 
 func action_harvest_crops():
-	busy_days_left = 1
-	action = actions.HARVEST_CROPS
-	action_string = "harvest"
-	global_position = Singleton.tele_crop.global_position
-	navigation.find_new_path()
+	if Singleton.crops.crops > 0:
+		busy_days_left = 1
+		action = actions.HARVEST_CROPS
+		action_string = "harvest"
+		global_position = Singleton.tele_crop.global_position
+		navigation.find_new_path()
+	else:
+		Singleton.terminal_log.log_error("No crops to harvest, ghost will wait")
 
 
 func action_collect_water():
