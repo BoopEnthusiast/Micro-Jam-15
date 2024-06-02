@@ -21,6 +21,8 @@ script = ExtResource("1_ub8a0")
 [node name="Navigation" type="NavigationAgent2D" parent="."]
 path_desired_distance = 5.0
 target_desired_distance = 2.5
+avoidance_enabled = true
+neighbor_distance = 100.0
 script = ExtResource("2_p53yk")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
