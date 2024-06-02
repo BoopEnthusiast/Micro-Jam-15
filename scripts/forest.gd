@@ -6,4 +6,4 @@ var trees = 5
 
 func chop_tree():
 	trees -= 1
-	generate_resource(5)
+	generate_resource(randi_range(4,6))
