@@ -26,6 +26,9 @@ func get_sick(days) :
 	
 	sickness += days
 
+func do_action(action) :
+	pass
+
 func day_pass(hunger, thirst, cold):
 
 	# Update survival variables
