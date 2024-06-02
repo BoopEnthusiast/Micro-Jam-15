@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cji63ii4aqhq"]
+[gd_scene load_steps=59 format=3 uid="uid://cji63ii4aqhq"]
 
 [ext_resource type="PackedScene" uid="uid://b6mbk30x5y2go" path="res://scenes/villager.tscn" id="1_0auvh"]
 [ext_resource type="Texture2D" uid="uid://cwwp2qbcv2xsm" path="res://resources/Backdrop1.png" id="2_85y2r"]
@@ -10,14 +10,27 @@
 [ext_resource type="PackedScene" uid="uid://bcfl5n8v8kvhg" path="res://scenes/stream.tscn" id="6_6ynix"]
 [ext_resource type="PackedScene" uid="uid://c0gxw2wri6s2j" path="res://scenes/crops.tscn" id="7_7r6mo"]
 [ext_resource type="Script" path="res://scripts/Blizzard.gd" id="8_4wd6v"]
+[ext_resource type="AudioStream" uid="uid://bhr0b5h88dvkq" path="res://resources/sounds/Chopping_tree-001.wav" id="8_25278"]
 [ext_resource type="Script" path="res://scripts/Thundertstorm.gd" id="8_r1a3o"]
 [ext_resource type="Script" path="res://scripts/Drought.gd" id="9_atjbi"]
+[ext_resource type="AudioStream" uid="uid://dq7uxrbs2vqo0" path="res://resources/sounds/Chopping_tree-002.wav" id="9_jmgmt"]
 [ext_resource type="Script" path="res://scripts/Plague.gd" id="10_mmax2"]
+[ext_resource type="AudioStream" uid="uid://doo72ed6f6xyg" path="res://resources/sounds/Chopping_tree-003.wav" id="10_tgj4t"]
 [ext_resource type="AudioStream" uid="uid://b3fvs500q7rls" path="res://resources/sounds/Thunder.wav" id="10_yyuhk"]
 [ext_resource type="AudioStream" uid="uid://cw10750vrnbd0" path="res://resources/sounds/Rain.wav" id="11_8r2ic"]
 [ext_resource type="AudioStream" uid="uid://c5x2xffamhuh7" path="res://resources/sounds/blizzard.wav" id="11_o5e4o"]
+[ext_resource type="AudioStream" uid="uid://b1ane2lms5hir" path="res://resources/sounds/Chopping_tree-004.wav" id="11_yarer"]
+[ext_resource type="AudioStream" uid="uid://bwpexmv20vr1g" path="res://resources/sounds/Chopping_tree-005.wav" id="12_a77fx"]
 [ext_resource type="AudioStream" uid="uid://680xen5p7q2u" path="res://resources/sounds/Fire.wav" id="13_w77b2"]
+[ext_resource type="AudioStream" uid="uid://rqkf5ysvvatf" path="res://resources/sounds/Collecting_Water-001.wav" id="14_ewntl"]
+[ext_resource type="AudioStream" uid="uid://dmfhj6dnkyu2h" path="res://resources/sounds/Collecting_Water-002.wav" id="15_geuc5"]
 [ext_resource type="AudioStream" uid="uid://dllelncxuut0m" path="res://resources/sounds/Plague-001.wav" id="15_xate6"]
+[ext_resource type="AudioStream" uid="uid://clwqgnc8vlrvg" path="res://resources/sounds/Collecting_Water-003.wav" id="16_unkf7"]
+[ext_resource type="AudioStream" uid="uid://dewby3yu0ks0j" path="res://resources/sounds/Collecting_Water-004.wav" id="17_net35"]
+[ext_resource type="AudioStream" uid="uid://dv577fmogy7y" path="res://resources/sounds/Collect_crops-001.wav" id="19_wuk4i"]
+[ext_resource type="AudioStream" uid="uid://1qqa1p7ywrob" path="res://resources/sounds/Collect_crops-002.wav" id="20_edt7r"]
+[ext_resource type="AudioStream" uid="uid://cmb16bipy5fhd" path="res://resources/sounds/Collect_crops-003.wav" id="21_failc"]
+[ext_resource type="AudioStream" uid="uid://mie41kggf7w7" path="res://resources/sounds/Collect_crops-004.wav" id="22_y7igp"]
 
 [sub_resource type="GDScript" id="GDScript_0sumy"]
 script/source = "extends Node2D
@@ -98,6 +111,41 @@ frame_1/texture = ExtResource("3_kbtfq")
 frame_1/duration = 1.0
 frame_2/texture = ExtResource("4_axxdq")
 frame_2/duration = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rc68x"]
+streams_count = 5
+stream_0/stream = ExtResource("8_25278")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("9_jmgmt")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("10_tgj4t")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("11_yarer")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("12_a77fx")
+stream_4/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ymk4d"]
+streams_count = 4
+stream_0/stream = ExtResource("14_ewntl")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("15_geuc5")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("16_unkf7")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("17_net35")
+stream_3/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_u8rsh"]
+streams_count = 4
+stream_0/stream = ExtResource("19_wuk4i")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("20_edt7r")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("21_failc")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("22_y7igp")
+stream_3/weight = 1.0
 
 [sub_resource type="Curve" id="Curve_c55bt"]
 _data = [Vector2(0, 1), 0.0, -0.229918, 0, 0, Vector2(0.992509, 0), -2.52763, 0.0, 0, 0]
@@ -350,11 +398,20 @@ npc_name = "Hershal"
 [node name="Forest" parent="." instance=ExtResource("5_6dytf")]
 position = Vector2(243, 13)
 
+[node name="ChoppingTree" type="AudioStreamPlayer" parent="Forest"]
+stream = SubResource("AudioStreamRandomizer_rc68x")
+
 [node name="Stream" parent="." instance=ExtResource("6_6ynix")]
 position = Vector2(126, 224)
 
+[node name="BucketWater" type="AudioStreamPlayer" parent="Stream"]
+stream = SubResource("AudioStreamRandomizer_ymk4d")
+
 [node name="Crops" parent="." instance=ExtResource("7_7r6mo")]
 position = Vector2(237, 224)
+
+[node name="CollectCrops" type="AudioStreamPlayer" parent="Crops"]
+stream = SubResource("AudioStreamRandomizer_u8rsh")
 
 [node name="Blizzard" type="GPUParticles2D" parent="."]
 position = Vector2(175, 111)

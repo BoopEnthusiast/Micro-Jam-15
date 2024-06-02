@@ -104,7 +104,6 @@ func day_pass(remove_hunger, remove_thirst, remove_warmth):
 	if hunger <= 0 or thirst <= 0 or warmth <= 0 or health <= 0:
 		death()
 	
-	var haul = 0
 	var priority_resource = Singleton.forest
 	var secondary_resource = Singleton.stream
 	var tertiary_resource = Singleton.crops
@@ -144,6 +143,6 @@ func day_pass(remove_hunger, remove_thirst, remove_warmth):
 			priority_resource = Singleton.stream
 			secondary_resource = Singleton.crops
 			tertiary_resource = Singleton.forest
+			
 	
-	print(wa,"  ",wo,"  ",fo)
 
