@@ -2,6 +2,8 @@ extends RichTextLabel
 
 
 func add_log(text_to_add: String) -> void:
-	print(text)
 	append_text("\n %s" % [text_to_add.replace("[", "[lb]")])
-	print(text)
+
+
+func log_error(text_to_log: String) -> void:
+	append_text("\n [color=red]%s[/color]" % [text_to_log])

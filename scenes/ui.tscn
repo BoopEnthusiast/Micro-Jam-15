@@ -62,6 +62,7 @@ anchor_right = 0.989796
 anchor_bottom = 0.99375
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_dx1ii")
 placeholder_text = " 'help' for commands"
 script = ExtResource("2_t6jp4")
