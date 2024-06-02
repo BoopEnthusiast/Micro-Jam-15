@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://ce8pl7f2q2cip"]
+
+[ext_resource type="Texture2D" uid="uid://76rlsfsrgvm2" path="res://resources/Villager-Sheet.png" id="1_nxr0x"]
+
+[resource]
+atlas = ExtResource("1_nxr0x")
+region = Rect2(0, 8, 6, 64)

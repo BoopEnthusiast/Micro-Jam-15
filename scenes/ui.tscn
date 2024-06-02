@@ -1,25 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgfjitk2aq4uc"]
+[gd_scene load_steps=4 format=3 uid="uid://dgfjitk2aq4uc"]
 
 [ext_resource type="Script" path="res://scripts/terminal_log.gd" id="1_2ttvf"]
 [ext_resource type="Script" path="res://scripts/terminal.gd" id="2_t6jp4"]
-
-[sub_resource type="Theme" id="Theme_o73fr"]
-default_font_size = 39
-
-[sub_resource type="Theme" id="Theme_vbord"]
-default_font_size = 39
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dx1ii"]
 bg_color = Color(0.0509804, 0.129412, 0.278431, 1)
 
 [node name="UI" type="Control"]
 layout_mode = 3
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -240.0
-offset_right = 294.0
-offset_bottom = 240.0
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 112.0
 grow_vertical = 2
 
 [node name="Background" type="ColorRect" parent="."]
@@ -57,7 +48,6 @@ alignment = 2
 
 [node name="Log" type="RichTextLabel" parent="TextBackground/LogContainer"]
 layout_mode = 2
-theme = SubResource("Theme_o73fr")
 bbcode_enabled = true
 fit_content = true
 autowrap_mode = 1
@@ -72,7 +62,6 @@ anchor_right = 0.989796
 anchor_bottom = 0.99375
 grow_horizontal = 2
 grow_vertical = 0
-theme = SubResource("Theme_vbord")
 theme_override_styles/normal = SubResource("StyleBoxFlat_dx1ii")
 placeholder_text = " 'help' for commands"
 script = ExtResource("2_t6jp4")
