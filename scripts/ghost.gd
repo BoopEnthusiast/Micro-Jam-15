@@ -64,13 +64,13 @@ func action_forest_chop():
 
 
 func action_forest_grow():
-	busy_days_left = 1
+	busy_days_left = 3
 	action = actions.GROW_TREE
 	action_string = "grow"
 
 
 func action_crops_grow():
-	busy_days_left = 1
+	busy_days_left = 2
 	action = actions.GROW_CROPS
 	action_string = "plant"
 
