@@ -104,7 +104,6 @@ func day_pass(remove_hunger, remove_thirst, remove_warmth):
 	if hunger <= 0 or thirst <= 0 or warmth <= 0 or health <= 0:
 		death()
 	
-	var haul = 0
 	var priority_resource = Singleton.forest
 	var secondary_resource = Singleton.stream
 	var tertiary_resource = Singleton.crops
@@ -145,50 +144,5 @@ func day_pass(remove_hunger, remove_thirst, remove_warmth):
 			secondary_resource = Singleton.crops
 			tertiary_resource = Singleton.forest
 			
-	var pr
-	var sr
-	var tr
-	if priority_resource is Forest:
-		pr = Singleton.wood
-	if priority_resource is Stream:
-		pr = Singleton.water
-	if priority_resource is Crops:
-		pr = Singleton.food
-	if secondary_resource is Forest:
-		sr = Singleton.wood
-	if secondary_resource is Stream:
-		sr = Singleton.water
-	if secondary_resource is Crops:
-		sr = Singleton.food
-	if tertiary_resource is Forest:
-		tr = Singleton.wood
-	if tertiary_resource is Stream:
-		tr = Singleton.water
-	if tertiary_resource is Crops:
-		tr = Singleton.food
-		
-	if priority_resource.resource_storage > 0:
-		if priority_resource.resource_storage >= 10:
-			pr += 10
-			priority_resource.resource_storage -= 10
-		else:
-			pr += priority_resource.resource_storage
-			priority_resource.resource_storage = 0
-			
-	if secondary_resource.resource_storage > 0:
-		if secondary_resource.resource_storage >= 10:
-			sr += 10
-			secondary_resource.resource_storage -= 10
-		else:
-			sr += secondary_resource.resource_storage
-			secondary_resource.resource_storage = 0
-			
-	if tertiary_resource.resource_storage > 0:
-		if tertiary_resource.resource_storage >= 10:
-			tr += 10
-			tertiary_resource.resource_storage -= 10
-		else:
-			tr += tertiary_resource.resource_storage
-			tertiary_resource.resource_storage = 0
-		
+	
 
