@@ -201,6 +201,10 @@ func entered_command() -> void:
 	
 	elif command == "next":
 		increase_ghost()
+	
+	elif command == "end":
+		Singleton.end_day()
+	
 #endregion
 #region Parse error
 	else:
