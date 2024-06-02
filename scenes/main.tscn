@@ -224,41 +224,49 @@ texture = ExtResource("2_q7ja4")
 
 [node name="Ghost1" parent="." instance=ExtResource("3_4ci76")]
 position = Vector2(193, 70)
+collision_mask = 1
 id = 1
 npc_name = "Nick"
 
 [node name="Villager2" parent="." instance=ExtResource("1_0auvh")]
 position = Vector2(173, 192)
+collision_mask = 1
 id = 2
 npc_name = "Angela"
 
 [node name="Villager3" parent="." instance=ExtResource("1_0auvh")]
 position = Vector2(133, 119)
+collision_mask = 1
 id = 3
 npc_name = "Mary"
 
 [node name="Villager4" parent="." instance=ExtResource("1_0auvh")]
 position = Vector2(232, 122)
+collision_mask = 1
 id = 4
 npc_name = "Roy"
 
 [node name="Villager5" parent="." instance=ExtResource("1_0auvh")]
 position = Vector2(128, 73)
+collision_mask = 1
 id = 5
 npc_name = "Chad"
 
 [node name="Villager6" parent="." instance=ExtResource("1_0auvh")]
 position = Vector2(168, 47)
+collision_mask = 1
 id = 6
 npc_name = "Vince"
 
 [node name="Villager7" parent="." instance=ExtResource("1_0auvh")]
 position = Vector2(209, 87)
+collision_mask = 1
 id = 7
 npc_name = "Alice"
 
 [node name="Villager8" parent="." instance=ExtResource("1_0auvh")]
 position = Vector2(175, 152)
+collision_mask = 1
 id = 8
 npc_name = "Hershal"
 

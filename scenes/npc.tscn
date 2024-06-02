@@ -15,6 +15,7 @@ size = Vector2(6, 8)
 default_font_size = 16
 
 [node name="NPC" type="CharacterBody2D" groups=["npc"]]
+collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_ub8a0")
 
