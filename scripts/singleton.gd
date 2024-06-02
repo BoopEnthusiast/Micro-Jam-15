@@ -3,6 +3,11 @@ extends Node
 
 var remaining_days = 50
 
+var next_calamity
+var blizzard_days = 0
+var temp_water
+
+
 # village storage
 var wood = 0
 var food = 0
@@ -28,6 +33,20 @@ func end_day():
 	villagers = get_tree().get_nodes_in_group("villager") as Array[Villager]
 	ghosts = get_tree().get_nodes_in_group("ghost") as Array[Ghost]
 	var need_resource: int
+	
+	blizzard_days -= 1
+	if remaining_days > 0:
+		remaining_days -= 1
+		if remaining_days % 10 == 9:
+			random_calamity()
+		if remaining_days != 50 and remaining_days % 10 == 0:
+			play_calamity()
+	else:
+		pass # end game win
+	
+	if blizzard_days <= 0:
+		stream.resource_storage += temp_water
+		temp_water = 0
 	
 	if villagers.size() <= 0:
 		pass # end game lose
@@ -80,11 +99,37 @@ func end_day():
 
 
 func random_calamity():
-	pass
-	#Blizzard - water become frozen for x days, all crops die
-	#Plague - random numkber of villagers get sick for x days
-	#Drought - all crops die, all water stores are removed
-	#Thunderstorm - random number of trees are removed
+	var random_num = randi_range(1,4)
+	if random_num == 1:
+		next_calamity = "Blizzard"
+	if random_num == 2:
+		next_calamity = "Plague"
+	if random_num == 3:
+		next_calamity = "Drought"
+	if random_num == 4:
+		next_calamity = "Thunderstorm"
+	terminal_log.log_error("Incoming calamity: " + next_calamity)
 
 func play_calamity():
-	pass
+	if next_calamity == "Blizzard":
+		crops.crops = 0
+		for villager: Villager in villagers:
+			if villager.haul_resource == stream:
+				villager.cancel_task()
+				villager.warmth -= 20
+		stream.resources_in_stasis = 0
+		blizzard_days = 5
+		temp_water = stream.resource_storage
+		stream.resource_storage = 0
+	if next_calamity == "Plague":
+		for villager: Villager in villagers:
+			villager.get_sick(randi_range(3,7))
+	if next_calamity == "Drought":
+		crops.crops = 0
+		for villager: Villager in villagers:
+			if villager.haul_resource == stream:
+				villager.cancel_task()
+		stream.resource_storage = 0
+		stream.resources_in_stasis = 0
+	if next_calamity == "Thunderstorm":
+		forest.trees = 0
