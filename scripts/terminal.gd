@@ -12,10 +12,11 @@ const VILLAGER_FILE_EXTENSION = ".vl"
 var last_caret_column: int
 
 # Command variables
-var command_list = ["help - print this", "ls - list files and directories", "pwd - print current directory", "cd <directory name> - change directory", "cat <file name> - print file contents"]
+var command_list = ["help - print this", "ls - list files and directories", "pwd - print current directory", "cd <directory name> - change directory", "cat <file name> - print file contents", "selected - print selected ghost"]
 var current_directory: String = ""
 
 @onready var log_node = $"../../TextBackground/LogContainer/Log"
+
 
 func _ready():
 	grab_focus()
@@ -45,9 +46,12 @@ func _on_caret_changed():
 
 func entered_command() -> void:
 	var command = text.to_lower().strip_edges()
+#region Help command
 	if command == "help":
 		print_help()
+#endregion
 	
+#region Ls command
 	elif command == "ls":
 		if current_directory == GHOST_DIRECTORY:
 			for ghost in Singleton.ghosts:
@@ -58,10 +62,14 @@ func entered_command() -> void:
 		else:
 			log_node.add_log(GHOST_DIRECTORY)
 			log_node.add_log(VILLAGER_DIRECTORY)
+#endregion
 	
+#region Pwd command
 	elif command == "pwd":
 		log_node.add_log("/" + current_directory)
+#endregion
 	
+#region Cd command
 	elif command.begins_with("cd "):
 		command = command.lstrip("cd ")
 		if len(command) == 0:
@@ -75,10 +83,13 @@ func entered_command() -> void:
 				current_directory = ""
 			else:
 				log_node.log_error("did not recognize directory. List directories and files with ls, use .. to go down a directory")
+
 	
 	elif command.begins_with("cd"):
 		log_node.log_error("cd requires name of directory. List directories and files with ls, use .. to go down a directory")
+#endregion
 	
+#region Cat command
 	elif command.begins_with("cat "):
 		command = command.lstrip("cat ")
 		if len(command) == 0:
@@ -91,7 +102,7 @@ func entered_command() -> void:
 				if command == ghost.npc_name.to_lower() + GHOST_FILE_EXTENSION:
 					log_node.add_log("Name: " + ghost.npc_name)
 					log_node.add_log("ID: " + str(ghost.id))
-					# log_node.add_log("Currnet action: " + ghost.action) # need to implement -----------------------------------------------
+					log_node.add_log("Currnet action: " + ghost.action_string)
 					log_node.add_log("Action days left: " + str(ghost.busy_days_left))
 					found_ghost = true
 					break
@@ -117,6 +128,7 @@ func entered_command() -> void:
 	
 	elif command.begins_with("cat"):
 		log_node.log_error("cat requires name of file. List directories and files with ls")
+#endregion
 	
 	elif command.begins_with("chop "):
 		command = command.lstrip("chop ")
