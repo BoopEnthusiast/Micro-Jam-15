@@ -9,6 +9,8 @@ var crops = 5
 func _enter_tree():
 	Singleton.crops = self
 
+func grow_crops():
+	crops += 1
 
 func harvest_crops():
 	crops -= 1
