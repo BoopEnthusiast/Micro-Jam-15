@@ -1,5 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0gxw2wri6s2j"]
+[gd_scene load_steps=3 format=3 uid="uid://c0gxw2wri6s2j"]
 
 [ext_resource type="PackedScene" uid="uid://d4ljq5d06sgm5" path="res://scenes/resource.tscn" id="1_qniy8"]
+[ext_resource type="Script" path="res://scripts/crops.gd" id="2_qdhjw"]
 
 [node name="Crops" instance=ExtResource("1_qniy8")]
+script = ExtResource("2_qdhjw")

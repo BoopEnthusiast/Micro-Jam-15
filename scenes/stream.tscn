@@ -1,5 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcfl5n8v8kvhg"]
+[gd_scene load_steps=3 format=3 uid="uid://bcfl5n8v8kvhg"]
 
 [ext_resource type="PackedScene" uid="uid://d4ljq5d06sgm5" path="res://scenes/resource.tscn" id="1_ow42c"]
+[ext_resource type="Script" path="res://scripts/stream.gd" id="2_6gsj0"]
 
 [node name="Stream" instance=ExtResource("1_ow42c")]
+script = ExtResource("2_6gsj0")

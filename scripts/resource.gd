@@ -1,9 +1,8 @@
-extends Area2D
+class_name Resources extends Area2D
 
 
-var resource_storage
+var resource_storage = 0
 
 
-func _on_body_entered(body):
-	if body is NPC:
-		
+func generate_resource(resource_value):
+	resource_storage += resource_value
