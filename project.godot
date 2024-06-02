@@ -25,7 +25,7 @@ Singleton="*res://scripts/singleton.gd"
 window/size/viewport_width=256
 window/size/viewport_height=240
 window/size/mode=2
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 
 [gui]
 
