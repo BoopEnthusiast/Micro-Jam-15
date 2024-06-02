@@ -19,6 +19,7 @@ const RESROUCE_FILES = ["Forest", "Stream", "Crops", "Camp"]
 # Misc variables
 var last_caret_column: int = 0
 var current_ghost_index: int = 0
+var last_text_length: int = 0
 
 # Command variables
 var help_command_list = ["help - print this", "help file - print file commands", "help ghost - print selected ghost commands", "end - end current day and progress actions"]
@@ -27,6 +28,8 @@ var ghost_command_list = ["selected - print selected ghost", "plant - plant a ne
 var current_directory: String = ""
 
 @onready var log_node = $"../../TextBackground/LogContainer/Log"
+@onready var enter_sound = $EnterSound
+@onready var keyboard_sounds = $KeyboardSounds
 
 
 func _ready():
@@ -34,12 +37,18 @@ func _ready():
 
 
 func _on_text_changed():
+	
+	
 	# User says to input
 	if text.contains("\n"):
 		text = text.replace("\n", "")
 		log_node.add_bb_log("[color=#a825ba]" + text + "[/color]")
 		entered_command()
 		text = ""
+		enter_sound.play()
+	else:
+		print("playing_keyboard sound")
+		keyboard_sounds.play()
 	
 	# Limit text length
 	while len(text) > 17:
@@ -48,6 +57,7 @@ func _on_text_changed():
 	
 	# Store caret position
 	last_caret_column = get_caret_column()
+	last_text_length = len(text)
 
 
 func _on_caret_changed():
@@ -204,14 +214,11 @@ func entered_command() -> void:
 	elif command == "next":
 		increase_ghost()
 #endregion
-	
 #region End command
 	elif command == "end":
 		Singleton.end_day()
 		current_ghost_index = 0
 #endregion
-	
-
 #region Parse error
 	else:
 		log_node.log_error("Could not parse command")
